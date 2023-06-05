@@ -9,7 +9,5 @@ Rails.application.routes.draw do
   
   resources :users, only: [:index, :show]
 
-  resources :users do
-    resources :profiles, only: [:show, :new, :edit, :create, :destroy]
-  end
+  resources :profiles, only: [:show, :new, :edit, :create, :destroy]
 end

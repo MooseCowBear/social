@@ -1,0 +1,19 @@
+<%= form_with model: @profile do |f| %>
+  <div>
+    <%= f.label :username, "Username" %>
+    <%= f.text_field :username %>
+  </div>
+  <div>
+    <%= f.label :location, "Location" %>
+    <%= f.text_field :location %>
+  </div>
+  <div>
+    <%= f.label :birthday, "Birthday" %>
+    <%= f.date_select :birthday, { order: [:month, :day, :year], start_year: Date.current.year - 100, end_year: Date.current.year - 13 } %>
+  </div>
+
+  <div>
+    <p>this is where photo uploads will be</p>
+  </div>
+  <%= f.submit "Submit" %>
+<% end %>
