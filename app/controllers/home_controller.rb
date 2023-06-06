@@ -1,7 +1,9 @@
 class HomeController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def index
     if current_user
-      render :index #this will change, will want to redirect to user's page. then can delete the view
+      redirect_to user_path(current_user)
     else
       redirect_to new_user_session_path
     end

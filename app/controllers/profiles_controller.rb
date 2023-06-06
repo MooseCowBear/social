@@ -1,8 +1,8 @@
 class ProfilesController < ApplicationController
-  before_action :require_permission, except: :show
+  before_action :set_profile, except: [:create, :new]
+  before_action :check_ownership, except: [:create, :new]
 
   def show
-    @profile = Profile.find(params[:id])
   end
 
   def new
@@ -10,29 +10,29 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = current_user.build_profile(profile_params)
+    @profile = Profile.new(profile_params)
+    @profile.user = current_user
     if @profile.save
-      redirect_to @profile
+      flash[:notice] = "Profile has been created."
+      redirect_to user_profile_path(@profile.user, @profile)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @profile = Profile.find(params[:id])
   end
 
   def update 
-    @profile = Profile.find(params[:id])
     if @profile.update(profile_params)
-      redirect_to @profile
+      flash[:notice] ="Profile has been updated."
+      redirect_to user_profile_path(@profile.user, @profile)
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @profile = Profile.find(params[:id])
     @profile.destroy
   
     redirect_to root_path, status: :see_other
@@ -47,6 +47,17 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    require(:profile).permit(:username, :location, :birthday, :time_zone)
+    params.require(:profile).permit(:username, :location, :birthday, :time_zone, :user_id)
+  end
+
+  def set_profile 
+    @profile = Profile.find(params[:id])
+  end
+
+  def check_ownership
+    if @profile.user != current_user
+      flash[:notice] = "Only profile owners may edit profiles."
+      redirect_to root_path
+    end
   end
 end

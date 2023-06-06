@@ -1,3 +1,4 @@
+
 <%= form_with model: @profile do |f| %>
   <div>
     <%= f.label :username, "Username" %>
@@ -16,5 +17,5 @@
     <%= f.label :time_zone, "Time Zone" %>
     <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, default: "Eastern Time (US & Canada)") %>
   </div>
-  <%= f.submit "Submit" %>
+  <%= f.submit %>
 <% end %>

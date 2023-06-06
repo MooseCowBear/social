@@ -1,0 +1,9 @@
+<h1>Users Page</h1>
+
+<% if @user.profile %>
+  <p>Hello, <%= @user.profile.username %>!<p>
+  <%= link_to "Profile", user_profile_path(@user, @user.profile) %>
+<% else %>
+  <p>Hello, <%= @user.email %>!</p>
+  <%= link_to "Create a Profile", new_user_profile_path(@user) %>
+<% end %>

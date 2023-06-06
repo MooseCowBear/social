@@ -11,6 +11,13 @@
   </head>
 
   <body>
+    <header>
+      <%= link_to "Home", root_path %>
+      <% if current_user %>
+        <%= link_to "Edit Account", edit_user_registration_path %>
+        <%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
+      <% end %>
+    </header>
     <div>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
