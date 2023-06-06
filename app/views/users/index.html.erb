@@ -1,2 +1,12 @@
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
+
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <%= user.profile.username if user.profile %>
+      <%= user.email unless user.profile %>
+      <%= button_to "Send Friend Request", friend_requests_path(user_id: current_user.id, friend_id: user.id) %>
+    </li>
+  <% end %>
+</ul>

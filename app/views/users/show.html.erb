@@ -7,3 +7,19 @@
   <p>Hello, <%= @user.email %>!</p>
   <%= link_to "Create a Profile", new_user_profile_path(@user) %>
 <% end %>
+
+<p>Your Friend Requests</p>
+<ul>
+  <% @user.received_requests.each do |r| %>
+    <p>
+      <span>
+        <%= r.user.profile.username if r.user.profile %>
+        <%= r.user.email unless r.user.profile %>
+      </span>
+      has sent you a friend request. 
+      <span>status: <%= r.status %></span>
+    </p>
+    <%# ADD BUTTON TO CREATE FRIENDSHIP %>
+    <%= button_to "Decline Request", friend_request_path(id: r.id, status: "rejected"), method: :patch %>
+  <% end %>
+</ul>
