@@ -7,6 +7,9 @@ class User < ApplicationRecord
   
   has_one :profile, dependent: :destroy 
 
+  has_many :friend_requests, dependent: :destroy
+  has_many :received_requests, class_name: "FriendRequest", foreign_key: "friend_id"
+
   def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.email = auth.info.email
