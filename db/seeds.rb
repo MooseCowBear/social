@@ -10,14 +10,29 @@ User.destroy_all
 FriendRequest.destroy_all
 Profile.destroy_all
 
-emails = ["alice@test.com", "barry@test.com", "chris@test.com", "darrel@test.com", "edwin@test.com"]
+names = ["alice", "harry", "martin", "malek", "gloria", 
+  "steve", "horace", "emily", "emma", "evelyn", "carry",
+  "ryan", "avery", "melissa", "john", "michael", "winston",
+  "sarah", "evie", "alison", "mary", "zack", "pete", "phil",
+  "chester", "jaime", "dana", "megan", "adam", "tammy", "eliott",
+  "lara", "claire", "wesley", "henry", "josh", "david", "ben", 
+  "jennifer", "kevin", "clive", "owen", "robbie", "amelia", "stacy",
+  "alastair", "mackenzie", "freida", "pierre", "george", "frances",
+  "betty", "olivia", "damian", "susan", "hugh", "lauren", "max", "maxine",
+  "harriet", "lily"] #61
 
-emails.each do |e|
-  User.create!(email: e, password: "123456")
+emails = names.map { |name| name + "@fake.com" }
+
+emails.each_with_index do |e|
+  user = User.create!(email: e, password: "123456")
 end
 
-requesters = [1, 2, 3, 4]
-
-requesters.each do |r|
-  FriendRequest.send_request(User.find(r), User.find(r + 1))
+requests = []
+30.times do |i|
+  x = (0..60).to_a.sample(2)
+  begin
+    FriendRequest.send_request(User.find(x[0]), User.find(x[1]))
+  rescue
+  end
 end
+
