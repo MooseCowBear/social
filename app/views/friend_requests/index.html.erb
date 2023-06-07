@@ -1,4 +1,4 @@
-<h1> this is the page where friend requests will be managed </h1>
+<h1>Manage Your Friends</h1>
 
 <h3>friends</h3>
 <% @friends.each do |f| %>
@@ -6,21 +6,26 @@
   <%= button_to "Unfriend", unfriend_friend_requests_path(friend: f) %>
 <% end %>
 
-<h3>pending friends</h3>
+<h3>Outstanding Requests From Friends</h3>
 <% @pending.each do |f| %>
   <%= display_name(f) %>
   <%= button_to "Accept", accept_friend_requests_path(friend: f) %>
   <%= button_to "Decline", decline_friend_requests_path(friend: f) %>
 <% end %>
 
-<h3>requested friends</h3>
+<h3>Outstanding Requests To Friends</h3>
 <% @requested.each do |f| %>
   <%= display_name(f) %>
   <%= button_to "Unrequest", unfriend_friend_requests_path(friend: f) %>
 <% end %>
 
-<h3>declined</h3>
-<% @declined.each do |f| %>
-  <%= display_name(f) %>
-  <%= button_to "Accept", accept_friend_requests_path(friend: f) %>
-<% end %>
+<div data-controller="toggle" data-toggle-change-class="hidden">
+  <button data-action="toggle#toggle">View Declined Requests</button>
+  <div data-toggle-target="content" class="declined hidden">
+    <h3>Declined Requests</h3>
+    <% @declined.each do |f| %>
+      <%= display_name(f) %>
+      <%= button_to "Accept", accept_friend_requests_path(friend: f) %>
+    <% end %>
+  </div>
+</div>
