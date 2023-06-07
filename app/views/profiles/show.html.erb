@@ -5,7 +5,7 @@
 <p>Birthday: <%= @profile.birthday %></p>
 <p>Time Zone: <%= @profile.time_zone %></p>
 
-<%= image_tag @profile.small_avatar %>
+<%= image_tag @profile.small_avatar if @profile.avatar.attached?%>
 
 <%= link_to "Edit", edit_profile_path(@profile) %>
 
