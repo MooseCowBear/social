@@ -34,8 +34,8 @@ class FriendRequest < ApplicationRecord
   def self.unfriend(a, b)
     transaction do
       #remove both rows from the table if the friendship  
-      destroy!(find_by(user_id: a, friend_id: b).id)
-      destroy!(find_by(user_id: b, friend_id: a).id)
+      destroy(find_by(user_id: a, friend_id: b).id)
+      destroy(find_by(user_id: b, friend_id: a).id)
     end
   end
 

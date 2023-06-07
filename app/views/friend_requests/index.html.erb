@@ -16,6 +16,7 @@
 <h3>requested friends</h3>
 <% @requested.each do |f| %>
   <%= display_name(f) %>
+  <%= button_to "Unrequest", unfriend_friend_requests_path(friend: f) %>
 <% end %>
 
 <h3>declined</h3>
