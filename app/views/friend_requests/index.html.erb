@@ -1,0 +1,25 @@
+<h1> this is the page where friend requests will be managed </h1>
+
+<h3>friends</h3>
+<% @friends.each do |f| %>
+  <%= f.email %> 
+  <%= button_to "Unfriend", unfriend_friend_requests_path(friend: f) %>
+<% end %>
+
+<h3>pending friends</h3>
+<% @pending.each do |f| %>
+  <%= display_name(f) %>
+  <%= button_to "Accept", accept_friend_requests_path(friend: f) %>
+  <%= button_to "Decline", decline_friend_requests_path(friend: f) %>
+<% end %>
+
+<h3>requested friends</h3>
+<% @requested.each do |f| %>
+  <%= display_name(f) %>
+<% end %>
+
+<h3>declined</h3>
+<% @declined.each do |f| %>
+  <%= display_name(f) %>
+  <%= button_to "Accept", accept_friend_requests_path(friend: f) %>
+<% end %>
