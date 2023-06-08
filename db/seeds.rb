@@ -23,7 +23,7 @@ names = ["alice", "harry", "martin", "malek", "gloria",
 
 emails = names.map { |name| name + "@fake.com" }
 
-emails.each_with_index do |e|
+emails.each do |e|
   user = User.create!(email: e, password: "123456")
 end
 
@@ -35,4 +35,33 @@ requests = []
   rescue
   end
 end
+
+#want some established friends, not just requested ones...
+
+alice = User.find_by(email: "alice@fake.com")
+
+friends = ["harry@fake.com", "martin@fake.com", "malek@fake.com", "gloria@fake.com"]
+
+friends.each do |f|
+  begin
+    friend = User.find_by(email: f)
+    FriendRequest.send_request(alice, friend)
+    FriendRequest.accept_request(alice, friend)
+  rescue
+    #in case the random friend requests above already sent these
+  end
+end
+
+titles = ["Best Day Ever!", "No one saw that coming", "And they said it was a bad idea", "Who Dis"]
+
+content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer viverra diam et dui finibus mollis. Pellentesque ex ipsum, molestie in ante in, sagittis convallis orci. Vivamus sed ultricies nulla, at blandit nulla. In orci nisi, aliquam eget lectus sit amet, viverra dignissim mauris. Maecenas pellentesque ut ante vel dapibus. Suspendisse."
+
+friends.each_with_index do |f, i|
+  friend = User.find_by(email: f)
+  Post.create!(user_id: friend.id, title: titles[i], body: content)
+end
+
+Post.create!(user_id: alice.id, title: "First Post", body: content)
+Post.create!(user_id: alice.id, title: "Another Post", body: content)
+Post.create!(user_id: alice.id, title: "And because we want something on the page...", body: content)
 

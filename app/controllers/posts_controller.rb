@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only [:edit, :update, :destroy]
-  before_action :confirm_ownership, only [:edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :confirm_ownership, only: [:edit, :update, :destroy]
 
   def index
     @posts = current_user.posts

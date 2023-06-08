@@ -1,0 +1,21 @@
+<div class="post-card">
+  <div class="header">
+    <h2><%= post.title %></h2>
+    <p><%= display_name(post.user) %><p>
+  </div>
+  <div class="post-image">
+    <%= image_tag @post.image if @post.image.attached? %>
+  </div>
+  <div class="post-body">
+    <%= @post.body %>
+  </div>
+
+  <% if @post.user == current_user %>
+    <%= link_to "Edit Post", edit_post_path %>
+    <%= link_to "Delete", post_path(@post), data: {
+                              turbo_method: :delete,
+                              turbo_confirm: "Are you sure?"
+                            } %>
+  <% end %>
+</div>
+
