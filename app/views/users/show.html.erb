@@ -1,15 +1,23 @@
-<h1>Users Page</h1>
+<div class="main user">
+  <div class="header user">
+    <h2>Hello, <span class="bold"><%= display_name(@user) %>!</span></h2>
+      <% if @user.profile %>
+        <%= link_to "Profile", user_profile_path(@user, @user.profile) %>
+      <% else %>
+        <%= link_to "Create a Profile", new_user_profile_path(@user) %>
+      <% end %>
+  </div>
 
-<% if @user.profile %>
-  <p>Hello, <%= @user.profile.username %>!<p>
-  <%= link_to "Profile", user_profile_path(@user, @user.profile) %>
-<% else %>
-  <p>Hello, <%= @user.email %>!</p>
-  <%= link_to "Create a Profile", new_user_profile_path(@user) %>
-<% end %>
+  <div class="post wrapper">
+    <h1>Recent Posts</h1>
+    <% @posts.each do |post| %>
+      <%= render "posts/post", post: post %>
+    <% end %>
+  </div>
 
-<%= link_to "Manage Friends", friend_requests_path %>
-<%= link_to "Find Friends", users_path %>
+  <%= link_to "Manage Friends", friend_requests_path %>
+  <%= link_to "Find Friends", users_path %>
 
-<%= link_to "Create A Post", new_post_path %>
-<%= link_to "My Posts", posts_path %>
+  <%= link_to "Create A Post", new_post_path %>
+  <%= link_to "My Posts", posts_path %>
+</div>

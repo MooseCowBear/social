@@ -1,10 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Poppins:wght@300&display=swap');
 
+/* reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p, 
+section,
+article {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* end reset */
 /* for the stimulus controller */
+
+body {
+  font-family: 'Poppins', sans-serif;
+  padding: 1rem;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Hind', sans-serif;
+}
+
+.main {
+  padding: 1rem;
+}
+
+.post.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 20px;
+  border: 2px solid black;
+}
+
+.post.header {
+  border-bottom: 1px solid black;
+}
+
 .hidden {
   display: none;
+}
+
+header, .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .default-avatar {
   height: 50px;
   width: 50px;
+}
+
+.wrapper {
+  padding: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  border: 2px solid black;
+  padding: 1rem;
+}
+
+input[type="text"], textarea {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 100%;
+}
+
+input[type="submit"] {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: transparent;
+  margin-top: 1rem;
+}
+
+input[type="file"]{
+  width: 100%; /* doesn't work */
+}
+
+input::file-selector-button {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: transparent;
 }
