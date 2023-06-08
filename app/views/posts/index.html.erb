@@ -1,9 +1,13 @@
-<h1>Posts</h1>
+  <div class="post wrapper">  
+    <div class="header">
+      <h1>My Posts</h1>
+      <%= link_to "Create A Post", new_post_path, data: { turbo_frame: dom_id(Post.new) } %>
+    </div>
 
-<ul>
-  <% @posts.each do |p| %>
-    <li>
-      <%= p.title %>
-    </li>
-  <% end %>
-</ul>
+    <%= turbo_frame_tag Post.new %>
+    <%= turbo_frame_tag "posts" do %>
+      <% @posts.each do |post| %>
+        <%= render "posts/post", post: post %>
+      <% end %>
+    <% end %>
+  </div>
