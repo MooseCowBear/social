@@ -1,0 +1,17 @@
+<%= form_with model: @post do |f| %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <div>
+    <%= f.label :title, "Title" %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :body, "Body" %>
+    <%= f.text_area :body %>
+  </div>
+
+  <div>
+    <%= f.label :image %>
+    <%= f.file_field :image %> 
+  </div>
+  <%= f.submit %>
+<% end %>

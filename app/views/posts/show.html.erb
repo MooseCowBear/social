@@ -1,0 +1,15 @@
+<h1>Post Show Page</h1>
+
+<div>
+  <h2><%= @post.title %></h2>
+  <p><%= @post.body if @post.body %></p>
+  <%= image_tag @post.image if @post.image.attached? %>
+</div>
+
+<% if @post.user == current_user %>
+  <%= link_to "Edit Post", edit_post_path %>
+  <%= link_to "Delete", post_path(@post), data: {
+                            turbo_method: :delete,
+                            turbo_confirm: "Are you sure?"
+                          } %>
+<% end %>

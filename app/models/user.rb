@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:google_oauth2]
   
   has_one :profile, dependent: :destroy 
+  has_many :posts, dependent: :destroy 
 
   has_many :friend_requests, dependent: :destroy
   has_many :friends, -> { where(friend_requests: { status: "accepted" }) }, through: :friend_requests

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root "home#index"
 
   devise_for :users, controllers: {
@@ -23,4 +22,6 @@ Rails.application.routes.draw do
     post :decline, on: :collection
     post :unfriend, on: :collection
   end
+
+  resources :posts
 end
