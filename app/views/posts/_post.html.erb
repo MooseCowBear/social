@@ -5,7 +5,7 @@
         <h2>
           <%= link_to post.title, post_path(post), data: { turbo_frame: "_top" }%>
         </h2>
-        <p><%= post.user.email %><p>
+        <p><%= display_name(post.user) %><p>
       </div>
       <%= post.created_at %>
     </div>
