@@ -5,5 +5,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = Post.where(user_id: post_ids)
+  end
+
+  private
+
+  def post_ids
+    current_user.friends.pluck(:id) << current_user.id
   end
 end
