@@ -1,24 +1,24 @@
-<div class="post-card">
-  <div class="header post">
-    <div>
-      <h2><%= link_to post.title, post_path(post) %></h2>
-      <p><%= display_name(post.user) %><p>
+<%= turbo_frame_tag post do %>
+  <div class="post-card">
+    <div class="header post">
+      <div>
+        <h2>
+          <%= link_to post.title, post_path(post), data: { turbo_frame: "_top" }%>
+        </h2>
+        <p><%= post.user.email %><p>
+      </div>
+      <%= post.created_at %>
     </div>
-    <%= post.created_at %>
-  </div>
-  <div class="post-image">
-    <%= image_tag post.image if post.image.attached? %>
-  </div>
-  <div class="post-body">
-    <%= post.body %>
-  </div>
+    <div class="post-image">
+      <%= image_tag post.image if post.image.attached? %>
+    </div>
+    <div class="post-body">
+      <%= post.body %>
+    </div>
 
-  <% if post.user == current_user %>
-    <%= link_to "Edit Post", edit_post_path %>
-    <%= link_to "Delete", post_path(post), data: {
-                              turbo_method: :delete,
-                              turbo_confirm: "Are you sure?"
-                            } %>
-  <% end %>
-</div>
-
+    <% if post.user == current_user %>
+      <%= link_to "Edit Post", edit_post_path(post) %>
+      <%= button_to "Delete", post_path(post), method: :delete %>
+    <% end %>
+  </div>
+<% end %>

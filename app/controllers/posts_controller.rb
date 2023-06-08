@@ -18,7 +18,10 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to @post
+      respond_to do |format|
+        format.html { redirect_to @post, notice: "Post was successfully created." }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -42,7 +45,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
 
-    redirect_to root_path, status: :see_other
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "Post was successfully deleted." }
+      format.turbo_stream
+    end
   end
 
   private 

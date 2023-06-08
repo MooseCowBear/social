@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = Post.where(user_id: post_ids).includes([:user]).includes([:image_attachment])
+    @posts = Post.where(user_id: post_ids).includes([:user]).includes([:image_attachment]).order(created_at: :desc)
   end
 
   private
