@@ -2,6 +2,8 @@ class Post < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
+  has_many :comments, as: :commentable, dependent: :destroy
+
   validates_presence_of :title
   validates_presence_of :body
 

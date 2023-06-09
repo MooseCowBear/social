@@ -1,3 +1,17 @@
 <h1>Post Show Page</h1>
 
 <%= render "post", post: @post %>
+
+<%#= render partial: "comments/form", locals: { comment: Comment.new, commentable: @post } %>
+
+<%#= render partial: 'comments/comment', collection: @post.comments %>
+
+<div class="header">
+  <h2>Comments</h2>
+  <%= link_to "Add a comment", new_post_comment_path(post_id: @post), data: { turbo_frame: dom_id(Comment.new) } %>
+</div>
+
+<%= turbo_frame_tag Comment.new %>
+<%= turbo_frame_tag "comments" do %>
+  <%= render @post.comments.includes(:user) || "There are no comments yet." %>
+<% end %>

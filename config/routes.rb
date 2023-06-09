@@ -24,4 +24,14 @@ Rails.application.routes.draw do
   end
 
   resources :posts
+
+  resources :posts do
+    resources :comments
+  end
+
+  resources :comments do
+    resources :comments
+  end
+
+  resources :comments
 end
