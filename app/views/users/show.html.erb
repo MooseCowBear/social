@@ -1,22 +1,35 @@
-<div class="main user">
-  <div class="header user">
-    <h2>Hello, <span class="bold"><%= display_name(@user) %>!</span></h2>
-      <% if @user.profile %>
-        <%= link_to "Profile", user_profile_path(@user, @user.profile) %>
-      <% else %>
-        <%= link_to "Create a Profile", new_user_profile_path(@user) %>
-      <% end %>
-  </div>
-
-  <div class="post wrapper">  
-    <div class="header">
-      <h1>Recent Posts</h1>
-      <%= link_to "Create A Post", new_post_path, data: { turbo_frame: dom_id(Post.new) } %>
+<div class="user wrapper">
+  <div class="main user">
+    <div class="header user">
+      <h2>Hello, <span class="bold"><%= display_name(@user) %>!</span></h2>
+        <% if @user.profile %>
+          <%= link_to "Profile", user_profile_path(@user, @user.profile) %>
+        <% else %>
+          <%= link_to "Create a Profile", new_user_profile_path(@user) %>
+        <% end %>
     </div>
 
-    <%= turbo_frame_tag Post.new %>
-    <%= turbo_frame_tag "posts" do %>
-      <%= render @posts || "There are no posts yet." %>
-    <% end %>
+    <div class="post wrapper">  
+      <div class="header">
+        <h1>Recent Posts</h1>
+        <%= link_to "Create A Post", new_post_path, data: { turbo_frame: dom_id(Post.new) } %>
+      </div>
+
+      <%= turbo_frame_tag Post.new %>
+      <%= turbo_frame_tag "posts" do %>
+        <%= render @posts || "There are no posts yet." %>
+      <% end %>
+    </div>
+  </div>
+  <div class="sidebar user">
+    <div class="sidebar__content">
+      <h3>Notifications</h3>
+    </div>
+    <div class="sidebar__content">
+      <h3>Friends</h3>
+    </div>
+    <div class="sidebar__content">
+      <h3>People You May Know</h3>
+    </div>
   </div>
 </div>
