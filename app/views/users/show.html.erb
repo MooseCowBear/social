@@ -16,9 +16,7 @@
 
     <%= turbo_frame_tag Post.new %>
     <%= turbo_frame_tag "posts" do %>
-      <% @posts.each do |post| %>
-        <%= render "posts/post", post: post %>
-      <% end %>
+      <%= render @posts || "There are no posts yet." %>
     <% end %>
   </div>
 </div>
