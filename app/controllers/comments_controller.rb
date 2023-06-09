@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
     
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @commentable, notice: "Post was successfully created." }
+        format.html { redirect_to @commentable, notice: "Comment was successfully created." }
         format.turbo_stream
         #comment = Comment.new
         #format.turbo_stream {
@@ -52,6 +52,16 @@ class CommentsController < ApplicationController
       redirect_to @commentable
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+
+    respond_to do |format|
+      format.html { redirect_to @commentable, notice: "Comment was successfully deleted." }
+      format.turbo_stream
     end
   end
 

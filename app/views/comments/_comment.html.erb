@@ -4,7 +4,7 @@
     <%= comment.body %>
     <% if comment.user == current_user %>
       <%= link_to "Edit", edit_post_comment_path(post_id: comment.commentable.id, id: comment.id) %>
-      <%= button_to "Delete", comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %>
+      <%= button_to "Delete", comment_path(comment), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
     <% end %>
   </div>
 <% end %>
