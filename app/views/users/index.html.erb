@@ -1,9 +1,5 @@
 <h1>Find New Friends</h1>
 <div class="user__wrapper">
-  <% @users.each do |user| %>
-    <div class="user-row">
-      <%= render :partial => 'user', :locals => { user: user } %>
-      <%= button_to "Send Friend Request", friend_requests_path(friend: user) %>
-    </div>
-  <% end %>
+  <%= render @users, locals: { request: true } %>
+  <%= "There is no one else to friend." unless @users.any? %>
 </div>

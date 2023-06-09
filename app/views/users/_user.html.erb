@@ -6,4 +6,9 @@
     <p><%= display_name(user) %></p>
     <p><%= user.profile.location if user.profile && user.profile.location %></p>
   </div>
+
+  <% if request %>
+    <%= button_to "Send Friend Request", friend_requests_path(friend: user) %>
+  <% end %>
+
 </div>
