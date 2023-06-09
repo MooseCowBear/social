@@ -11,27 +11,11 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
-
-    #@post = Post.new(post_params)
-
-    #if @post.save
-      #respond_to do |format|
-        #format.html { redirect_to @post, notice: "Post was successfully created." }
-        #format.turbo_stream
-      #end
-    #else
-      #render :new, status: :unprocessable_entity
-    #end
     
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @commentable, notice: "Comment was successfully created." }
         format.turbo_stream
-        #comment = Comment.new
-        #format.turbo_stream {
-          #render turbo_stream: turbo_stream.replace(dom_id_for_records(@commentable, comment), partial: "comments/form", locals: { comment: comment, commentable: @commentable })
-        #}
-        #format.html { redirect_to @commentable, notice: "Comment was successfully created." }
       else
         format.turbo_stream {
           render turbo_stream: turbo_stream.replace(dom_id_for_records(@commentable, @comment), partial: "comments/form", locals: { comment: @comment, commentable: @commentable })

@@ -2,7 +2,7 @@ module CommentsHelper
 
   def dom_id_for_records(*records, prefix: nil)
     records.map do |record|
-      dom_id(record, prefix: prefix)
+      dom_id(record)
     end.join("_")
   end
 end
