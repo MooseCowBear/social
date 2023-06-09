@@ -10,7 +10,7 @@
       <%= post.created_at %>
     </div>
     <div class="post-image">
-      <%= image_tag post.image if post.image.attached? %>
+      <%= image_tag post.resized_image if post.image.attached? %>
     </div>
     <div class="post-body">
       <%= post.body %>
