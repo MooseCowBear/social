@@ -2,7 +2,7 @@
 <div class="user__wrapper">
   <% @users.each do |user| %>
     <div class="user-row">
-      <%= render :partial => 'shared/user', :locals => { user: user } %>
+      <%= render :partial => 'user', :locals => { user: user } %>
       <%= button_to "Send Friend Request", friend_requests_path(friend: user) %>
     </div>
   <% end %>
