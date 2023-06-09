@@ -1,7 +1,10 @@
 <%= turbo_frame_tag comment do %>
   <li>
     <div class="comment-card">
-      <%= display_name(comment.user) %>
+      <div class="comment-card__header">
+        <%= display_name(comment.user) %>
+        <%= display_date(comment.created_at) %>
+      </div>
       <%= comment.body %>
       <% if comment.user == current_user %>
         <%= link_to "Edit", edit_post_comment_path(post_id: comment.commentable.id, id: comment.id) %>

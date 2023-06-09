@@ -28,4 +28,12 @@ class User < ApplicationRecord
         #user.skip_confirmation! #add if set up confirmable.
     end
   end
+
+  def get_time_zone
+    if self.profile
+      self.profile.time_zone
+    else
+      "Eastern Time (US & Canada)"
+    end
+  end
 end

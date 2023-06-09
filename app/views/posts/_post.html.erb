@@ -7,7 +7,7 @@
         </h2>
         <p><%= display_name(post.user) %><p>
       </div>
-      <%= post.created_at %>
+      <%= display_date(post.created_at) %>
     </div>
     <div class="post-image">
       <%= image_tag post.resized_image if post.image.attached? %>
