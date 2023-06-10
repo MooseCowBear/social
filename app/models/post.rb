@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_one_attached :image
 
   has_many :comments, as: :commentable, dependent: :destroy
+  has_many :descendants, class_name: "Comment", foreign_key: "parent_post_id"
 
   validates_presence_of :title
   #validates_presence_of :body
@@ -19,12 +20,12 @@ class Post < ApplicationRecord
   def acceptable_image
     return unless image.attached?
   
-    unless avatar.blob.byte_size <= 1.megabyte
+    unless image.blob.byte_size <= 1.megabyte
       errors.add(:image, "is too big")
     end
   
     acceptable_types = ["image/jpeg", "image/png"]
-    unless acceptable_types.include?(avatar.content_type)
+    unless acceptable_types.include?(image.content_type)
       errors.add(:image, "must be a JPEG or PNG")
     end
   end
