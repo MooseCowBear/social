@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :confirm_ownership, only: [:edit, :update, :destroy]
+  before_action :destroy_format, only: [:destroy]
 
   def index
     @posts = current_user.posts.includes([:image_attachment]).order(created_at: :desc)
@@ -52,6 +53,11 @@ class PostsController < ApplicationController
   end
 
   private 
+
+  def destroy_format
+    #needed this in conjunction with the delete button with "_top" to get redirection from show page delete to root path
+    request.format = :html if request.referer.include?("post")
+  end
 
   def set_post
     @post = Post.find(params[:id])

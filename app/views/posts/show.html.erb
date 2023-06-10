@@ -1,6 +1,8 @@
 <h1>Post Show Page</h1>
 
-<%= render "post", post: @post %>
+<%= render @post, show: true %>
+
+<%#= render "post", post: @post %>
 
 <%#= render partial: "comments/form", locals: { comment: Comment.new, commentable: @post } %>
 

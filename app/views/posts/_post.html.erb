@@ -18,7 +18,11 @@
 
     <% if post.user == current_user %>
       <%= link_to "Edit Post", edit_post_path(post) %>
-      <%= button_to "Delete", post_path(post), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+      <% if show %>
+        <%= button_to "Delete", post_path(post), method: :delete, form: { data: { turbo_confirm: 'Are you sure?', turbo_frame: "_top" } } %>
+      <% else %>
+        <%= button_to "Delete", post_path(post), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+      <% end %>
     <% end %>
   </div>
 <% end %>

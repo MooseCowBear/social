@@ -6,7 +6,6 @@ class Post < ApplicationRecord
   has_many :descendants, class_name: "Comment", foreign_key: "parent_post_id"
 
   validates_presence_of :title
-  #validates_presence_of :body
 
   validate :acceptable_image
   validate :has_content

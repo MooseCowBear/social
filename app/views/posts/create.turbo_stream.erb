@@ -1,7 +1,8 @@
-<% if false %>
-  <%= turbo_stream.prepend "posts", partial: "posts/post", locals: { post: @post } %>
-  <%= turbo_stream.update Post.new, "" %>
-<% end %>
 
+  <%= turbo_stream.prepend "posts", partial: "posts/post", locals: { post: @post, show: false } %>
+  <%= turbo_stream.update Post.new, "" %>
+
+<% if false %>
 <%= turbo_stream.prepend "posts", @post %>
 <%= turbo_stream.update Post.new, "" %>
+<% end %>

@@ -17,7 +17,8 @@
 
       <%= turbo_frame_tag Post.new %>
       <%= turbo_frame_tag "posts" do %>
-        <%= render @posts || "There are no posts yet." %>
+        <%= render @posts, show: false %>
+        <%= "There are no posts yet." unless @posts.any? %>
       <% end %>
     </div>
   </div>
