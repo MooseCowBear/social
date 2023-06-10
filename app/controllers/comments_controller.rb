@@ -6,11 +6,17 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
+    @post = Post.find(params[:parent_post_id])
   end
 
   def create
-    @comment = @commentable.comments.new(comment_params)
+    puts "my commentable is:"
+    pp @commentable
+    @comment =  @commentable.comments.new(comment_params)
     @comment.user = current_user
+    puts "the comment looks like"
+    pp @comment
+  
     
     respond_to do |format|
       if @comment.save
@@ -27,13 +33,15 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = Comment.find(params[:id])
+    @post = Post.find(@comment.parent_post_id)
   end
 
   def update
     @comment = Comment.find(params[:id])
+    @post = Post.find(@comment.parent_post_id)
 
     if @comment.update(comment_params)
-      redirect_to @commentable
+      redirect_to post_path(@post) 
     else
       render :edit, status: :unprocessable_entity
     end
@@ -52,13 +60,15 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body, :parent_post_id)
   end
 
   def set_commentable
     if params[:comment_id]
+      puts "i had a comment id"
       @commentable = Comment.find_by_id(params[:comment_id]) 
     elsif params[:post_id]
+      puts "i had a post id"
       @commentable = Post.find_by_id(params[:post_id])
     end
   end
