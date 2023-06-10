@@ -1,12 +1,6 @@
-<% if false %>
-<%= turbo_stream.prepend "comments", @comment %>
-<%= turbo_stream.update Comment.new, "" %>
-<% end %>
-
 <% if @comment.commentable_type == "Post" %>
   <%= turbo_stream.prepend "comments", @comment %>
 <% else %>
-  <%#= turbo_stream.prepend(@comment, partial: "comments/comment", locals: { comment: @comment }) %>
   <%= turbo_stream.append "comment_#{@comment.commentable.id}_comments", @comment %>
 <% end %>
 <%= turbo_stream.update dom_id_for_records(@comment.commentable, Comment.new), "" %>
