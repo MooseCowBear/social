@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   include ActionView::RecordIdentifier
-
   include CommentsHelper
+
   before_action :set_commentable
 
   def new
@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
     @post = Post.find(@comment.parent_post_id)
 
     if @comment.update(comment_params)
-      redirect_to post_path(@post) 
+      redirect_to post_path(@post) #could this be commentable if there was a turbo frame?
     else
       render :edit, status: :unprocessable_entity
     end
