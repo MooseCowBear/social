@@ -5,12 +5,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = Post.where(user_id: post_ids).includes(user: :profile).includes(:image_attachment).order(created_at: :desc)
+    @posts = Post.where(user_id: post_ids(@user)).includes(user: :profile).includes(:image_attachment).order(created_at: :desc)
   end
 
   private
 
-  def post_ids
-    current_user.friends.pluck(:id) << current_user.id
+  def post_ids(user) 
+    user.friends.pluck(:id) << user.id
   end
 end
