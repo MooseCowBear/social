@@ -5,9 +5,10 @@ class Post < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
 
   validates_presence_of :title
-  validates_presence_of :body
+  #validates_presence_of :body
 
   validate :acceptable_image
+  validate :has_content
 
   def resized_image
     image.variant(resize_to_limit: [300, 300]).processed
@@ -25,6 +26,12 @@ class Post < ApplicationRecord
     acceptable_types = ["image/jpeg", "image/png"]
     unless acceptable_types.include?(avatar.content_type)
       errors.add(:image, "must be a JPEG or PNG")
+    end
+  end
+
+  def has_content
+    unless !self.body.blank? || self.image.attached?
+      errors.add(:post, "must have content.")
     end
   end
 end

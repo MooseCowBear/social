@@ -1,5 +1,12 @@
 
 <%= form_with model: @post, html: {class: "form"} do |f| %>
+  <% if f.object.errors.any? %>
+    <div>
+      <% f.object.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="form-field">
     <%= f.label :title, "Title" %>
@@ -16,5 +23,5 @@
   </div>
  
   <%= f.submit %>
-  
+  <%= link_to "cancel", :back %>
 <% end %>

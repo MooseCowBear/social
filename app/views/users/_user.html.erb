@@ -1,7 +1,6 @@
 <div class="user-card">
   <%= image_tag user.profile.avatar_as_thumnail if user.profile && user.profile.avatar.attached? %>
   <%= image_tag "account-circle.svg", class: "default-avatar" unless user.profile && user.profile.avatar.attached? %>
-  <%# can add default avatar image here if either profile is missing or avatar is missing %>
   <div class="user-card__info">
     <p><%= display_name(user) %></p>
     <p><%= user.profile.location if user.profile && user.profile.location %></p>
