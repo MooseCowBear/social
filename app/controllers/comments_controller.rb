@@ -10,13 +10,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    puts "my commentable is:"
-    pp @commentable
     @comment =  @commentable.comments.new(comment_params)
     @comment.user = current_user
-    puts "the comment looks like"
-    pp @comment
-  
     
     respond_to do |format|
       if @comment.save
