@@ -3,7 +3,8 @@
     <div class="header post">
       <div>
         <h2>
-          <%= link_to post.title, post_path(post), data: { turbo_frame: "_top" }%>
+          <%= link_to post.title, post_path(post), 
+            data: { turbo_frame: "_top" }%>
         </h2>
         <p><%= display_name(post.user) %><p>
       </div>
@@ -19,9 +20,13 @@
     <% if post.user == current_user %>
       <%= link_to "Edit Post", edit_post_path(post) %>
       <% if show %>
-        <%= button_to "Delete", post_path(post), method: :delete, form: { data: { turbo_confirm: 'Are you sure?', turbo_frame: "_top" } } %>
+        <%= button_to "Delete", post_path(post, format: :html), 
+          method: :delete, 
+          form: { data: { turbo_confirm: 'Are you sure?', turbo_frame: "_top" } } %>
       <% else %>
-        <%= button_to "Delete", post_path(post), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+        <%= button_to "Delete", post_path(post), 
+        method: :delete, 
+        form: { data: { turbo_confirm: 'Are you sure?' } } %>
       <% end %>
     <% end %>
   </div>
