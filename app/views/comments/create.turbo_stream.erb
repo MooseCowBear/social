@@ -4,3 +4,4 @@
   <%= turbo_stream.append "comment_#{@comment.commentable.id}_comments", @comment %>
 <% end %>
 <%= turbo_stream.update dom_id_for_records(@comment.commentable, Comment.new), "" %>
+<%= turbo_stream.update "flash", partial: "layouts/flash" %>

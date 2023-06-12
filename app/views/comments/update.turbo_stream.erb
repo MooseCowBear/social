@@ -1,0 +1,4 @@
+<%= turbo_stream.replace @comment do %>
+  <%= render partial: "comments/comment" %>
+  <%= turbo_stream.update "flash", partial: "layouts/flash" %>
+<% end %>

@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @commentable, notice: "Comment was successfully created." }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "Comment was successfully created." }
       else
         format.turbo_stream {
           render turbo_stream: turbo_stream.replace(dom_id_for_records(@commentable, @comment), partial: "comments/form", locals: { comment: @comment, commentable: @commentable })
@@ -36,7 +36,11 @@ class CommentsController < ApplicationController
     @post = Post.find(@comment.parent_post_id)
 
     if @comment.update(comment_params)
-      redirect_to post_path(@post), notice: "Comment was successfully updated." 
+      respond_to do |format|
+        #did not replace flash...
+        redirect_to post_path(@post), notice: "Comment was successfully updated." 
+        format.turbo_stream { flash.now[:notice] = "Comment was successfully updated." } #this does not work...
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -48,7 +52,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to @commentable, notice: "Comment was successfully deleted." }
-      format.turbo_stream
+      format.turbo_stream { flash.now[:notice] = "Comment was successfully deleted." }
     end
   end
 
