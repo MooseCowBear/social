@@ -33,12 +33,10 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
-    @post = Post.find(@comment.parent_post_id)
 
     if @comment.update(comment_params)
       respond_to do |format|
-        #did not replace flash...
-        redirect_to post_path(@post), notice: "Comment was successfully updated." 
+        format.html { redirect_to @comment, notice: "Comment was successfully updated." }
         format.turbo_stream { flash.now[:notice] = "Comment was successfully updated." } #this does not work...
       end
     else
