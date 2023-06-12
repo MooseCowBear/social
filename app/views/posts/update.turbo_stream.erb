@@ -1,0 +1,9 @@
+<%= turbo_stream.replace @post do %>
+  <%= render partial: "posts/post", locals: { post: @post, show: false } %>
+  <%= turbo_stream.replace "flash", partial: "layouts/flash" %>
+<% end %>
+
+<% if false %>
+<%= turbo_stream.replace @post %>
+<%= turbo_stream.replace "flash", partial: "layouts/flash" %>
+<% end %>

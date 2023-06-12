@@ -33,9 +33,8 @@
       </div>
     </header>
     <main>
-      <div>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+      <div id="flash" class="flash">
+        <%= render "layouts/flash" %>
       </div>
       <%= yield %>
     </main>

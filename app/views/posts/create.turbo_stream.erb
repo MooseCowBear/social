@@ -1,6 +1,7 @@
 
-  <%= turbo_stream.prepend "posts", partial: "posts/post", locals: { post: @post, show: false } %>
-  <%= turbo_stream.update Post.new, "" %>
+<%= turbo_stream.prepend "posts", partial: "posts/post", locals: { post: @post, show: false } %>
+<%= turbo_stream.update Post.new, "" %>
+<%= turbo_stream.replace "flash", partial: "layouts/flash" %>
 
 <% if false %>
 <%= turbo_stream.prepend "posts", @post %>

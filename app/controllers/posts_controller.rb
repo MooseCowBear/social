@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     if @post.save
       respond_to do |format|
         format.html { redirect_to @post, notice: "Post was successfully created." }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "Post was successfully created." }
       end
     else
       render :new, status: :unprocessable_entity
@@ -35,7 +35,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if @post.update(post_params)
-      redirect_to @post
+      respond_to do |format|
+        format.html { redirect_to @post, notice: "Post was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Post was successfully updated." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -46,8 +49,8 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Post was successfully deleted." }
-      format.turbo_stream
+      format.html { redirect_to root_path, notice: "Post was successfully deleted." } #problem, flash stays around even after performing new action..
+      format.turbo_stream { flash.now[:notice] = "Post was successfully deleted." } 
     end
   end
 

@@ -2,12 +2,6 @@
 
 <%= render @post, show: true %>
 
-<%#= render "post", post: @post %>
-
-<%#= render partial: "comments/form", locals: { comment: Comment.new, commentable: @post } %>
-
-<%#= render partial: 'comments/comment', collection: @post.comments %>
-
 <div class="header">
   <h2>Comments</h2>
   <%= link_to "Comment", new_post_comment_path(post_id: @post, parent_post_id: @post), data: { turbo_frame: dom_id_for_records(@post, Comment.new) } %>

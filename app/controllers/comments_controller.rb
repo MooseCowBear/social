@@ -36,7 +36,7 @@ class CommentsController < ApplicationController
     @post = Post.find(@comment.parent_post_id)
 
     if @comment.update(comment_params)
-      redirect_to post_path(@post) #could this be commentable if there was a turbo frame?
+      redirect_to post_path(@post), notice: "Comment was successfully updated." 
     else
       render :edit, status: :unprocessable_entity
     end
@@ -60,10 +60,8 @@ class CommentsController < ApplicationController
 
   def set_commentable
     if params[:comment_id]
-      puts "i had a comment id"
       @commentable = Comment.find_by_id(params[:comment_id]) 
     elsif params[:post_id]
-      puts "i had a post id"
       @commentable = Post.find_by_id(params[:post_id])
     end
   end
