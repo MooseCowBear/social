@@ -16,10 +16,15 @@
     <div class="post-body">
       <%= post.body %>
     </div>
+
     
-    <div class="counts">
-      <p><%= post.comment_count %> comments</p>
-    </div>
+      <div class="counts">
+        <p>
+        <%= turbo_frame_tag "#{post.id}_comment_count" do %>
+          <%= post.comment_count %>
+        <% end %> 
+        comments</p>
+      </div>
 
     <% if post.user == current_user %>
       <%= link_to "Edit Post", edit_post_path(post) %>

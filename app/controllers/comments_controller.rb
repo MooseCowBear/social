@@ -15,6 +15,8 @@ class CommentsController < ApplicationController
     
     respond_to do |format|
       if @comment.save
+        @post = Post.find(@comment.parent_post_id)
+        @comment_count = @post.comment_count
         format.html { redirect_to @commentable, notice: "Comment was successfully created." }
         format.turbo_stream { flash.now[:notice] = "Comment was successfully created." }
       else
@@ -48,6 +50,8 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.destroy
 
+    @post = Post.find(@comment.parent_post_id)
+    @comment_count = @post.comment_count
     respond_to do |format|
       format.html { redirect_to @commentable, notice: "Comment was successfully deleted." }
       format.turbo_stream { flash.now[:notice] = "Comment was successfully deleted." }
