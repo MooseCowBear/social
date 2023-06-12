@@ -2,6 +2,7 @@ class Profile < ApplicationRecord
   belongs_to :user
   has_one_attached :avatar
 
+  validates :username, uniqueness: { case_sensitive: false }
   validate :acceptable_image
 
   #for "friend requests, posts, etc."
