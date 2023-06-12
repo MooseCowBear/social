@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :descendants, class_name: "Comment", foreign_key: "parent_post_id"
 
+  has_many :likes, dependent: :destroy
+
   validates_presence_of :title
 
   validate :acceptable_image
@@ -12,6 +14,10 @@ class Post < ApplicationRecord
 
   def resized_image
     image.variant(resize_to_limit: [300, 300]).processed
+  end
+
+  def comment_count
+    descendants.count
   end
 
   private
