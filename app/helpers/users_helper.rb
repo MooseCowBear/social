@@ -3,7 +3,7 @@ module UsersHelper
     if user.profile
       user.profile.username
     else
-      user.email
+      user.email.split("@").first.capitalize
     end
   end
 
@@ -11,7 +11,7 @@ module UsersHelper
     zone = ActiveSupport::TimeZone.new(current_user.get_time_zone)
     date = date.in_time_zone(zone)
     if date.today?
-      "today"
+      date.strftime("%l:%M %P") #"today"
     elsif date.yesterday?
       "yesterday"
     else

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all_except(current_user).includes([:profile])
+    @users = User.all_except(current_user).includes([:profile]).order(:email) #is this what we want?
   end
 
   def show
