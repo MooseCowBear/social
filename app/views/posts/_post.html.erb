@@ -17,14 +17,34 @@
       <%= post.body %>
     </div>
 
-    
-      <div class="counts">
-        <p>
-        <%= turbo_frame_tag "#{post.id}_comment_count" do %>
-          <%= post.comment_count %>
-        <% end %> 
-        comments</p>
-      </div>
+    <div class="counts">
+      <p>
+      <%= turbo_frame_tag "#{post.id}_comment_count" do %>
+        <%= post.comment_count %>
+      <% end %> 
+      comments</p>
+    </div>
+
+    <% if false %>
+    <div class="likes">
+      <%= turbo_frame_tag "#{post.id}_likes" do %>
+        <p><%= post.likes_count %> likes</p>
+        <% like = post.user_like(current_user) %>
+        <% if like %>
+          <%= button_to "Unlike", post_like_path(post_id: post.id, id: like.id), method: :delete %>
+        <% else %>
+          <%= button_to "Like", post_likes_path(post.id), method: :post %>
+        <% end %>
+      <% end %>
+    </div>
+    <% end %>
+
+    <div class="likes">
+      <%= turbo_frame_tag "#{post.id}_likes" do %>
+        <% render partial: "likes/like", locals: { post: post } %>
+      <% end %>
+    </div>
+
 
     <% if post.user == current_user %>
       <%= link_to "Edit Post", edit_post_path(post) %>

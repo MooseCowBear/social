@@ -20,6 +20,14 @@ class Post < ApplicationRecord
     descendants.count
   end
 
+  def likes_count #is this nec?
+    likes.count
+  end
+
+  def user_like(user)
+    likes.find_by(user_id: user.id)
+  end
+
   private
 
   def acceptable_image
