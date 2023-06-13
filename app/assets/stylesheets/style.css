@@ -91,6 +91,9 @@ header {
 
 main {
   grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  gap: 1rem;
 }
 
 .block {
@@ -126,7 +129,7 @@ h1, h2, h3, h4 {
   display: none;
 }
 
-.header {
+.greeting {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -194,11 +197,11 @@ input::file-selector-button {
 
 .user.wrapper {
   display: grid;
-  grid-template-columns: 1fr 250px;
+  grid-template-columns: 1fr;
   gap: 1rem;
 }
 
-.user.sidebar {
+.sidebar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
