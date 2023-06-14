@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'notifications/index'
   root "home#index"
 
   devise_for :users, controllers: {
@@ -35,4 +36,6 @@ Rails.application.routes.draw do
   end
 
   resources :comments
+
+  resources :notifications, only: [:index]
 end

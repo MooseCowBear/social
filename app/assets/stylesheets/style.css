@@ -211,3 +211,9 @@ input::file-selector-button {
   position: sticky;
   top: 0;
 }
+
+.header.page {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

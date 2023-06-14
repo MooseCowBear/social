@@ -1,4 +1,6 @@
 class FriendRequest < ApplicationRecord
+  include Notifiable
+
   belongs_to :user
   belongs_to :friend, class_name: "User"
 
@@ -37,6 +39,10 @@ class FriendRequest < ApplicationRecord
       destroy(find_by(user_id: a, friend_id: b).id)
       destroy(find_by(user_id: b, friend_id: a).id)
     end
+  end
+
+  def recipients
+    [friend_id]
   end
 
   private

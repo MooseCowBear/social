@@ -1,15 +1,14 @@
 <div class="user wrapper">
-
-    <div class="post wrapper">  
-      <div class="header">
-        <h1>Your Feed</h1>
-        <%= link_to "Create A Post", new_post_path, data: { turbo_frame: dom_id(Post.new) } %>
-      </div>
-
-      <%= turbo_frame_tag Post.new %>
-      <%= turbo_frame_tag "posts" do %>
-        <%= render @posts, show: false %>
-        <%= "There are no posts yet." unless @posts.any? %>
-      <% end %>
+  <div class="post wrapper">  
+    <div class="header page">
+      <h1>Your Feed</h1>
+      <%= link_to "Create A Post", new_post_path, data: { turbo_frame: dom_id(Post.new) } %>
     </div>
+
+    <%= turbo_frame_tag Post.new %>
+    <%= turbo_frame_tag "posts" do %>
+      <%= render @posts, show: false %>
+      <%= "There are no posts yet." unless @posts.any? %>
+    <% end %>
+  </div>
 </div>

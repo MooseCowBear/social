@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy 
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   has_many :friend_requests, dependent: :destroy
   has_many :friends, -> { where(friend_requests: { status: "accepted" }) }, through: :friend_requests
@@ -25,7 +26,6 @@ class User < ApplicationRecord
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.email = auth.info.email
         user.password = Devise.friendly_token[0, 20]
-
         #user.skip_confirmation! #add if set up confirmable.
     end
   end
@@ -36,5 +36,9 @@ class User < ApplicationRecord
     else
       "Eastern Time (US & Canada)"
     end
+  end
+
+  def notification_count
+    notifications.unread.count
   end
 end

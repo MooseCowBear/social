@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  include Notifiable
+
   belongs_to :user
   has_one_attached :image
 
@@ -6,6 +8,7 @@ class Post < ApplicationRecord
   has_many :descendants, class_name: "Comment", foreign_key: "parent_post_id"
 
   has_many :likes, dependent: :destroy
+  has_many :notifications, as: :item, dependent: :destroy
 
   validates_presence_of :title
 
@@ -26,6 +29,10 @@ class Post < ApplicationRecord
 
   def user_like(user)
     likes.find_by(user_id: user.id)
+  end
+
+  def recipients
+    user.friends.ids
   end
 
   private
