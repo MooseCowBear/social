@@ -184,13 +184,18 @@ input::file-selector-button {
 }
 
 .user__wrapper {
-  display: grid;
-  grid-template-columns: 1fr 250px;
-  column-gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .user_show__header {
   grid-column: 1 / span 2;
+}
+
+.user_show__main {
+  display: flex;
+  gap: 1rem;
 }
 
 .user_show__header, .posts_index__header {
@@ -200,7 +205,7 @@ input::file-selector-button {
 }
 
 .user_show__sidebar {
-  grid-column: 2;
+  min-width: 250px;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 1fr 1fr;
@@ -218,8 +223,18 @@ input::file-selector-button {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
+  padding: 1rem;
 }
 
+.sidebar__content > h3 {
+  border-bottom: 2px solid black;
+}
+
+.people__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
 .posts__wrapper {
   grid-column: 1;

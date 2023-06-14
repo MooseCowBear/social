@@ -41,4 +41,13 @@ class User < ApplicationRecord
   def notification_count
     notifications.unread.count
   end
+
+  def friend_with?(other)
+    friends.find_by(id: other.id)
+  end
+
+  def friends_of_friends
+    #NOT RIGHT
+    User.joins(:friend_requests).where(:id => friend_requests.pluck(:friend_id)).where.not(id: (self.potential_friends + [self]).map(&:id))
+  end
 end

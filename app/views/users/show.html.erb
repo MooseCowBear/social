@@ -1,29 +1,42 @@
 <div class="user__wrapper">
   <div class="user_show__header">
-    <h1>Your Feed</h1>
-    <%= link_to "Create A Post", new_post_path, data: { turbo_frame: dom_id(Post.new) } %>
-  </div>
-
-  <div class="posts__wrapper">  
-    <%= turbo_frame_tag Post.new %>
-    <%= turbo_frame_tag "posts" do %>
-      <%= render @posts, show: false %>
-      <%= "There are no posts yet." unless @posts.any? %>
+    <% if @user == current_user %>
+      <h1>Your Feed</h1>
+      <%= link_to "Create A Post", new_post_path, data: { turbo_frame: dom_id(Post.new) } %>
+    <% else %>
+      <h1><%= display_name(@user) %>'s page</h1>
+      <% if @user.profile %>
+          <%= link_to "Profile", user_profile_path(@user, @user.profile) %>
+      <% end %>
     <% end %>
   </div>
 
-  <div class="user_show__sidebar">
-    <div class="sidebar__content">
-      <h3>Friends</h3>
-      <div class="people__wrapper">
-        this is where a list of friends will go
-      </div>
+  <div class="user_show__main">
+    <div class="posts__wrapper">  
+      <%= turbo_frame_tag Post.new %>
+      <%= turbo_frame_tag "posts" do %>
+        <%= render @posts, show: false %>
+        <%= "There are no posts yet." unless @posts.any? %>
+      <% end %>
     </div>
-    <div class="sidebar__content">
-      <h3>People You May Know</h3>
-      <div class="people__wrapper">
-        this is where a list of friends of friends will go
+
+    <% if @user == current_user %>
+      <div class="user_show__sidebar">
+        <div class="sidebar__content">
+          <h3>Friends</h3>
+          <div class="people__wrapper">
+            <% @friends.each do |friend| %>
+              <%= link_to display_name(friend), user_path(friend) %>
+            <% end %>
+          </div>
+        </div>
+        <div class="sidebar__content">
+          <h3>People You May Know</h3>
+          <div class="people__wrapper">
+            this is where a list of friends of friends will go
+          </div>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>

@@ -2,7 +2,7 @@
 
 <h3>friends</h3>
 <% @friends.each do |f| %>
-  <%= f.email %> 
+  <%= display_name(f) %> 
   <%= button_to "Unfriend", unfriend_friend_requests_path(friend: f) %>
 <% end %>
 

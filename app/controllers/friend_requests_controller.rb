@@ -1,8 +1,8 @@
 class FriendRequestsController < ApplicationController
   def index
-    @friends = current_user.friends
-    @pending = current_user.pending_friends
-    @requested = current_user.requested_friends
+    @friends = current_user.friends.includes(:profile)
+    @pending = current_user.pending_friends.includes(:profile)
+    @requested = current_user.requested_friends.includes(:profile)
     @declined = current_user.declined_friends
   end
 
