@@ -47,7 +47,16 @@ class User < ApplicationRecord
   end
 
   def friends_of_friends
-    #NOT RIGHT
-    User.joins(:friend_requests).where(:id => friend_requests.pluck(:friend_id)).where.not(id: (self.potential_friends + [self]).map(&:id))
+    #very inefficient
+    User.joins(:friend_requests).where(:id => friend_friend_ids).where.not(id: (self.potential_friends + [self]).map(&:id))
+  end
+
+  def friend_friend_ids
+    #very inefficient
+    ids = []
+    friends.each do |friend|
+      ids += friend.friend_requests.pluck(:friend_id)
+    end
+    ids.uniq
   end
 end
