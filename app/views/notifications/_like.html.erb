@@ -1,1 +1,2 @@
-<%= display_name(notification.item.user) %> liked "<%= notification.item.post.title %>."
+<%= display_name(notification.item.user) %> liked 
+<%= link_to notification.item.post.title, post_path(notification.item.post) %>.

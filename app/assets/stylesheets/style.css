@@ -56,12 +56,15 @@ a:not([class]) {
   }
 }
 /* end reset */
+
 /* for the stimulus controller */
+.hidden {
+  display: none;
+}
 
 body {
   font-family: 'Poppins', sans-serif;
   padding: 1rem;
-  
   display: grid;
   grid-template-columns: 120px 1fr;
   grid-template-rows: auto;
@@ -79,7 +82,6 @@ header {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-
 }
 
 .header-content {
@@ -91,9 +93,8 @@ header {
 
 main {
   grid-column: 2;
-  display: grid;
-  grid-template-columns: 1fr 250px;
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .block {
@@ -104,12 +105,6 @@ main {
 
 h1, h2, h3, h4 {
   font-family: 'Hind', sans-serif;
-}
-
-.post.wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 
 .post-card {
@@ -125,14 +120,10 @@ h1, h2, h3, h4 {
   border-bottom: 1px solid black;
 }
 
-.hidden {
-  display: none;
-}
-
 .greeting {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 250px;
   align-items: center;
-  justify-content: space-between;
 }
 
 .default-avatar {
@@ -177,15 +168,12 @@ input::file-selector-button {
   gap: 1rem;
 }
 
-.user__wrapper {
-  max-width: 30rem;
-}
-
 .user-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .user-card__info {
 
 }
@@ -195,25 +183,47 @@ input::file-selector-button {
   gap: 1rem;
 }
 
-.user.wrapper {
+.user__wrapper {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 250px;
+  column-gap: 1rem;
+}
+
+.user_show__header {
+  grid-column: 1 / span 2;
+}
+
+.user_show__header, .posts_index__header {
+  display: flex;
+  align-items: center;
   gap: 1rem;
 }
 
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  max-height: 90vh;
+.user_show__sidebar {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 1fr 1fr;
+  gap: 1rem;
+  max-height: 80vh;
 
   position: -webkit-sticky;
   position: sticky;
   top: 0;
 }
 
-.header.page {
+.sidebar__content {
+  border: 1px solid black;
+  border-radius: 15px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+
+.posts__wrapper {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
