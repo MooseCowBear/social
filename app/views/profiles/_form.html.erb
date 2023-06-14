@@ -4,10 +4,12 @@
       <%= f.label :username, "Username" %>
       <%= f.text_field :username %>
     </div>
+    
     <div class="form-field">
       <%= f.label :location, "Location" %>
       <%= f.text_field :location %>
     </div>
+
     <div class="form-field">
       <%= f.label :birthday, "Birthday" %>
       <%= f.date_select :birthday, { selected: 18.year.ago, order: [:month, :day, :year], start_year: Date.current.year - 100, end_year: Date.current.year - 13 } %>

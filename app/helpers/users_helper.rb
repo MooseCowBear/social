@@ -7,6 +7,10 @@ module UsersHelper
     end
   end
 
+  def initial(user)
+    display_name(user)[0]
+  end
+
   def display_date(date, user = current_user)
     zone = ActiveSupport::TimeZone.new(user.get_time_zone)
     date = date.in_time_zone(zone)

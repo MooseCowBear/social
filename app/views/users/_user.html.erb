@@ -1,9 +1,15 @@
-<div class="user-card">
-  <%= image_tag user.profile.avatar_as_thumnail if user.profile && user.profile.avatar.attached? %>
-  <%= image_tag "account-circle.svg", class: "default-avatar" unless user.profile && user.profile.avatar.attached? %>
-  <div class="user-card__info">
-    <p><%= display_name(user) %></p>
-    <p><%= user.profile.location if user.profile && user.profile.location %></p>
+<div class="user_card">
+  <div class="user_card__content">
+    <%= image_tag user.profile.avatar_as_thumnail if user.profile && user.profile.avatar.attached? %>
+    <% unless user.profile && user.profile.avatar.attached? %>
+      <div class="no_avatar">
+        <p class="initial"><%= initial(user) %></p>
+      </div>
+    <% end %>
+    <div class="user-card__info">
+      <p><%= link_to display_name(user), user_path(user) %></p>
+      <small><%= user.profile.location if user.profile && user.profile.location %></small>
+    </div>
   </div>
 
   <% if request %>

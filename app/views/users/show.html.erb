@@ -26,7 +26,8 @@
           <h3>Friends</h3>
           <div class="people__wrapper">
             <% @friends.each do |friend| %>
-              <%= link_to display_name(friend), user_path(friend) %>
+              <%#= link_to display_name(friend), user_path(friend) %>
+              <%= render partial: "users/user", locals: { user: friend, request: false } %>
             <% end %>
           </div>
         </div>
