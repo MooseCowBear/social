@@ -1,0 +1,6 @@
+<div class="profile__wrapper">
+  <%= image_tag @profile.small_avatar if @profile.avatar.attached?%>
+
+  <p>Location: <%= @profile.location %></p>
+  <p>Birthday: <%= @profile.birthday.strftime("%B %-d") %></p>
+</div>

@@ -10,12 +10,17 @@
     </div>
     <div class="form-field">
       <%= f.label :birthday, "Birthday" %>
-      <%= f.date_select :birthday, { order: [:month, :day, :year], start_year: Date.current.year - 100, end_year: Date.current.year - 13 } %>
+      <%= f.date_select :birthday, { selected: 18.year.ago, order: [:month, :day, :year], start_year: Date.current.year - 100, end_year: Date.current.year - 13 } %>
     </div>
 
     <div class="form-field">
       <%= f.label :time_zone, "Time Zone" %>
       <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, default: "Eastern Time (US & Canada)") %>
+    </div>
+
+    <div class="form-field">
+    <%= f.label :interests, "Things I Like" %>
+    <%= f.text_area :interests %>
     </div>
 
     <div class="form-field">
