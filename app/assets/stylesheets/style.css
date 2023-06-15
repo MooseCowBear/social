@@ -76,6 +76,7 @@ a:not([class]) {
 
 .heart.color svg, .bubble.color svg {
   fill: url('#shape-gradient');
+  z-index: 0;
 }
 
 .svg_container {
@@ -137,6 +138,7 @@ body {
   background-color: var(--background-body);
   color: var(--text);
   padding: clamp(10px, 5vw, 2rem);
+  position: relative;
 }
 
 h1, h2, h3, h4 {
@@ -157,6 +159,10 @@ a {
 
 .lowercase {
   text-transform: lowercase;
+}
+
+.page__wrapper {
+  width: 100%;
 }
 
 .card {
@@ -238,6 +244,7 @@ header {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  z-index: 1;
 
   display: flex;
   justify-content: space-between;
@@ -251,7 +258,7 @@ header {
   background-color: var(--background-card);
   padding: 1rem;
   position: absolute;
-  top: 90%;
+  top: 50px;
   left: 50%;
   transform: translateX(-50%);
   width: clamp(300px, 60vw, 600px);
@@ -312,7 +319,6 @@ main {
   gap: 1rem;
 }
 
-
 .default-avatar {
   height: 50px;
   width: 50px;
@@ -337,9 +343,7 @@ input[type="password"] {
 input[type="submit"],
 .omniauth,
 .devise_cancel button,
-form button,
-form button,
-button {
+.request {
   border: 2px solid var(--gradient-three);
   border-radius: 5px;
   background-color: var(--gradient-three);
@@ -379,10 +383,8 @@ input::file-selector-button:focus,
 .omniauth:focus,
 .devise_cancel button:hover,
 .devise_cancel button:focus,
-form button:hover,
-form button:focus,
-button:hover,
-button:focus  {
+.request:hover,
+.request:focus {
   background: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
   border: 2px solid transparent;
   border-left: 2px solid var(--gradient-one);
@@ -470,6 +472,7 @@ input[type=checkbox] {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  z-index: 0;
 }
 
 .sidebar__content {
@@ -528,7 +531,7 @@ input[type=checkbox] {
   color: var(--gradient-one);
 }
 
-.user_index__wrapper {
+.user_index__wrapper, .page__wrapper {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;

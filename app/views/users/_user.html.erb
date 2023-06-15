@@ -13,6 +13,6 @@
   </div>
 
   <% if request %>
-    <%= button_to "Send Friend Request", friend_requests_path(friend: user) %>
+    <%= button_to "Send Friend Request", friend_requests_path(friend: user), class: "request" %>
   <% end %>
 </div>

@@ -1,43 +1,48 @@
 <div class="menu">
-  <div class="icon__wrapper">
-    <% if current_user.profile %>
-      <%= link_to user_profile_path(current_user, current_user.profile) do %>
-        <% render partial: "shared/profile_icon" %>
-      <% end %>
-    <% else %>
-      <%= link_to new_user_profile_path(current_user)  do %>
-        <% render partial: "shared/profile_icon" %>
-      <% end %>
-    <% end %>
-    <small class="icon__description">profile</small>
-  </div>
 
-  <div class="icon__wrapper">
-    <%= link_to friend_requests_path  do %>
-      <% render partial: "shared/friend_icon" %>
+  <% if current_user.profile %>
+    <%= link_to user_profile_path(current_user, current_user.profile) do %>
+      <div class="icon__wrapper">
+        <%= render partial: "shared/profile_icon" %>
+        <small class="icon__description">profile</small>
+      </div>
     <% end %>
-    <small class="icon__description">friend requests</small>
-  </div>
-  <div class="icon__wrapper">
-    <%= link_to users_path do %>
-      <% render partial: "shared/people_icon" %>
+  <% else %>
+    <%= link_to new_user_profile_path(current_user)  do %>
+      <div class="icon__wrapper">
+        <%= render partial: "shared/profile_icon" %>
+        <small class="icon__description">profile</small>
+      </div>
     <% end %>
-    <small class="icon__description">people</small>
-  </div>
-  <div class="icon__wrapper">
-    <%= link_to posts_path do %>
-      <% render partial: "shared/notes" %>
-    <% end %>
-    <small class="icon__description">posts</small>
-  </div>
+  <% end %>
 
+  <%= link_to friend_requests_path  do %>
+    <div class="icon__wrapper">
+      <%= render partial: "shared/friend_icon" %>
+      <small class="icon__description">friend requests</small>
+    </div>
+  <% end %>
 
-  <div class="icon__wrapper">
-    <%= link_to edit_user_registration_path do %>
-      <% render partial: "shared/cog" %>
-    <% end %>
-    <small class="icon__description">account</small>
-  </div>
+  <%= link_to users_path do %>
+    <div class="icon__wrapper">
+      <%= render partial: "shared/people_icon" %>
+      <small class="icon__description">people</small>
+    </div>
+  <% end %>
+
+  <%= link_to posts_path do %>
+    <div class="icon__wrapper">
+      <%= render partial: "shared/notes" %>
+      <small class="icon__description">posts</small>
+    </div>
+  <% end %>
+
+  <%= link_to edit_user_registration_path do %>
+    <div class="icon__wrapper">
+      <%= render partial: "shared/cog" %>
+      <small class="icon__description">account</small>
+    </div>
+  <% end %>
 
   <%= button_to "Logout", 
       destroy_user_session_path, 
