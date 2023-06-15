@@ -6,7 +6,11 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
-    @post = Post.find(params[:parent_post_id])
+    if params[:parent_post_id]
+      @post = Post.find(params[:parent_post_id])
+    else
+      @post = Post.find(params[:post_id]) 
+    end
   end
 
   def create

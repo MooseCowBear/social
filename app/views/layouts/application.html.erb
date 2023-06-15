@@ -12,63 +12,37 @@
 
   <body>
     <header>
-      <% unless current_page?(new_user_session_path)|| current_page?(new_user_registration_path) %>
-        <div class="header-content">
-          <%= link_to "so social", root_path, class: "logo" %>
-
-          <div class="block">
-            <div class="icon__wrapper">
-              <% if current_user.profile %>
-                <%= link_to image_tag("card-account-details-outline.svg", class: "icon"), user_profile_path(current_user, current_user.profile) %>
-              <% else %>
-                <%= link_to image_tag("card-account-details-outline.svg", class: "icon"), new_user_profile_path(current_user) %>
-              <% end %>
-              <small class="icon__description">profile</small>
-            </div>
-
-            <div class="icon__wrapper">
-              <%= link_to image_tag("account-group.svg", class: "icon"), friend_requests_path %>
-              <small class="icon__description">friend requests</small>
-            </div>
-            <div class="icon__wrapper">
-              <%= link_to image_tag("account-search-outline.svg", class: "icon"), users_path %>
-              <small class="icon__description">people</small>
-            </div>
-            <div class="icon__wrapper">
-              <%= link_to image_tag("note-edit-outline.svg", class: "icon"), posts_path %>
-              <small class="icon__description">posts</small>
-            </div>
+      <%= link_to "so social", root_path, class: "logo" %>
+      <% unless current_page?(new_user_session_path)|| current_page?(new_user_registration_path) || current_page?(new_user_password_path) %>
+        <div data-controller="toggle" data-toggle-change-class="hidden">
+          <div data-action="click->toggle#remove" class="clickable">
+            <%= render partial: "shared/hamburger" %>
           </div>
-
-          <div class="block">
-            <div class="icon__wrapper">
-              <%= link_to image_tag("cog.svg", class: "icon"), edit_user_registration_path %>
-              <small class="icon__description">account</small>
+          <div data-toggle-target="content" class="menu__wrapper hidden">
+            <div data-action="click->toggle#add" class="clickable close">
+              <%= render "shared/close" %>
             </div>
-            <%= button_to "Logout", 
-                destroy_user_session_path, 
-                data: {turbo: "false"}, method: :delete %>
+            <%= render partial: "layouts/menu" %>
           </div>
         </div>
       <% end %>
     </header>
+
     <main>
       <div class="flash_and_greeting">
         <div id="flash" class="flash">
           <%= render "layouts/flash" %>
         </div>
 
-        <% unless current_page?(new_user_session_path)|| current_page?(new_user_registration_path) %>
+        <% unless current_page?(new_user_session_path)|| current_page?(new_user_registration_path) || current_page?(new_user_password_path) %>
           <div class="greeting">
             <h2><span class="lowercase">Hello, </span><%= display_name(current_user) %></h2>
-
             <div class="notification__wrapper">
               <div class="notification__header">
-                <%= image_tag "bell-ring-outline.svg", class: "icon" %>
                 <h3><%= link_to "Notifications", notifications_path %></h3>
-              </div>
-              <div id="notification_count">
-                <%= render "notifications/count", count: current_user.notification_count %>
+                <div id="notification_count">
+                  <%= render "notifications/count", count: current_user.notification_count %>
+                </div>
               </div>
               <%= turbo_stream_from dom_id(current_user, :broadcast_to) %>
             </div>

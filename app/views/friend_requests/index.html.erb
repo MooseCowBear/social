@@ -1,10 +1,10 @@
-<div class="friends__wrapper">
+<div class="friends wrapper">
   <h1>Manage Your Friends</h1>
 
   <h3>friends</h3>
   <div class="friend_container">
     <% @friends.each do |f| %>
-      <div class="row">
+      <div class="row card">
         <%= display_name(f) %> 
         <%= button_to "Unfriend", unfriend_friend_requests_path(friend: f) %>
       </div>
@@ -15,7 +15,7 @@
   <h3>Outstanding Requests From Friends</h3>
   <div class="friend_container">
     <% @pending.each do |f| %>
-      <div class="row">
+      <div class="row card">
         <%= display_name(f) %>
         <%= button_to "Accept", accept_friend_requests_path(friend: f) %>
         <%= button_to "Decline", decline_friend_requests_path(friend: f) %>
@@ -27,7 +27,7 @@
   <h3>Outstanding Requests To Friends</h3>
   <div class="friend_container">
     <% @requested.each do |f| %>
-      <div class="row">
+      <div class="row card">
         <%= display_name(f) %>
         <%= button_to "Unrequest", unfriend_friend_requests_path(friend: f) %>
       </div>
@@ -37,11 +37,11 @@
 
   <div data-controller="toggle" data-toggle-change-class="hidden">
     <button data-action="toggle#toggle">View Declined Requests</button>
-    <div data-toggle-target="content" class="declined hidden">
+    <div data-toggle-target="content" class="card hidden">
       <h3>Declined Requests</h3>
       <div class="friend_container">
         <% @declined.each do |f| %>
-          <div class="row">
+          <div class="row card">
             <%= display_name(f) %>
             <%= button_to "Accept", accept_friend_requests_path(friend: f) %>
           </div>

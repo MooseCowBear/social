@@ -1,5 +1,5 @@
 
-<%= form_with model: @post, html: {class: "form"} do |f| %>
+<%= form_with model: @post, html: {class: "form card"} do |f| %>
   <% if f.object.errors.any? %>
     <div>
       <% f.object.errors.full_messages.each do |msg| %>
@@ -7,11 +7,14 @@
       <% end %>
     </div>
   <% end %>
+
   <%= f.hidden_field :user_id, :value => current_user.id %>
+
   <div class="form-field">
     <%= f.label :title, "Title" %>
     <%= f.text_field :title %>
   </div>
+  
   <div class="form-field">
     <%= f.label :body, "Body" %>
     <%= f.text_area :body %>

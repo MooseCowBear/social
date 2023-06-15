@@ -1,4 +1,4 @@
-<div class="user_card">
+<div class="card">
   <div class="user_card__content">
     <%= image_tag user.profile.avatar_as_thumnail if user.profile && user.profile.avatar.attached? %>
     <% unless user.profile && user.profile.avatar.attached? %>
@@ -15,5 +15,4 @@
   <% if request %>
     <%= button_to "Send Friend Request", friend_requests_path(friend: user) %>
   <% end %>
-
 </div>

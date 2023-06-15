@@ -36,9 +36,11 @@
       </div>
     <% end %>
 
-    <div class="post-body">
-      <%= post.body %>
-    </div>
+    <% unless post.body.nil? %>
+      <div class="post-body">
+        <%= post.body %>
+      </div>
+    <% end %>
 
     <div class="counts__wrapper">
       <div class="likes">

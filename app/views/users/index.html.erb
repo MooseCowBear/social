@@ -1,5 +1,7 @@
-<h1>Find New Friends</h1>
-<div class="user_index__wrapper">
-  <%= render @users, locals: { request: true } %>
-  <%= "There is no one else to friend." unless @users.any? %>
+<div class="wrapper">
+  <h1>Find New Friends</h1>
+  <div class="user_index__wrapper">
+    <%= render @users, locals: { request: true } %>
+    <%= "There is no one else to friend." unless @users.any? %>
+  </div>
 </div>

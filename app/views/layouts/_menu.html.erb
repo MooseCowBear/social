@@ -1,0 +1,45 @@
+<div class="menu">
+  <div class="icon__wrapper">
+    <% if current_user.profile %>
+      <%= link_to user_profile_path(current_user, current_user.profile) do %>
+        <% render partial: "shared/profile_icon" %>
+      <% end %>
+    <% else %>
+      <%= link_to new_user_profile_path(current_user)  do %>
+        <% render partial: "shared/profile_icon" %>
+      <% end %>
+    <% end %>
+    <small class="icon__description">profile</small>
+  </div>
+
+  <div class="icon__wrapper">
+    <%= link_to friend_requests_path  do %>
+      <% render partial: "shared/friend_icon" %>
+    <% end %>
+    <small class="icon__description">friend requests</small>
+  </div>
+  <div class="icon__wrapper">
+    <%= link_to users_path do %>
+      <% render partial: "shared/people_icon" %>
+    <% end %>
+    <small class="icon__description">people</small>
+  </div>
+  <div class="icon__wrapper">
+    <%= link_to posts_path do %>
+      <% render partial: "shared/notes" %>
+    <% end %>
+    <small class="icon__description">posts</small>
+  </div>
+
+
+  <div class="icon__wrapper">
+    <%= link_to edit_user_registration_path do %>
+      <% render partial: "shared/cog" %>
+    <% end %>
+    <small class="icon__description">account</small>
+  </div>
+
+  <%= button_to "Logout", 
+      destroy_user_session_path, 
+      data: {turbo: "false"}, method: :delete %>
+</div>
