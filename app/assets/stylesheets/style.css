@@ -90,6 +90,11 @@ svg {
   fill: var(--text);
 }
 
+.icon_button.like:hover .heart > svg, 
+.icon_button.like:focus .heart > svg {
+  fill: url('#shape-gradient');
+}
+
 .icon_button {
   background-color: transparent;
   border: transparent;
@@ -489,6 +494,10 @@ input[type=checkbox] {
   border-radius: 50%;
 }
 
+.sidebar__content .card.profile {
+  gap: 0.5rem;
+}
+
 .people__wrapper {
   display: flex;
   flex-direction: column;
@@ -511,7 +520,7 @@ input[type=checkbox] {
 }
 
 .preserve_spacing {
-  white-space: pre-wrap;
+  /*white-space: pre-wrap;*/
 }
 
 .no_avatar {
@@ -604,10 +613,10 @@ ul {
   color: var(--text);
 }
 
-.header {
+.login__header {
   display: flex;
   justify-content: space-between;
-  align-items: last baseline;
+  align-items: last baseline; 
 }
 
 /* for the stimulus controller */
