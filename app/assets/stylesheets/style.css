@@ -137,7 +137,6 @@ body {
   flex-direction: column;
   background-color: var(--background-body);
   color: var(--text);
-  padding: clamp(10px, 5vw, 2rem);
   position: relative;
 }
 
@@ -251,7 +250,7 @@ header {
   align-items: center;
   background-color: var(--background-body);
   border: 2px solid rgba(7, 7, 7, 0.12);
-  padding: 1rem 0;
+  padding: 1rem clamp(10px, 5vw, 2rem);
 }
 
 .menu__wrapper {
@@ -299,6 +298,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: clamp(10px, 5vw, 2rem);
 }
 
 .flash_and_greeting {
@@ -462,7 +462,7 @@ input[type=checkbox] {
 }
 
 .user_show__sidebar {
-  min-width: 250px;
+  min-width: 280px;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 1fr 1fr;
@@ -521,6 +521,10 @@ input[type=checkbox] {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.no_avatar.profile {
+  align-self: center; /* or leave as start? */
 }
 
 .initial {
@@ -597,4 +601,23 @@ ul {
 /* for the stimulus controller */
 .hidden {
   display: none;
+}
+
+@media only screen and (max-width: 620px) {
+  .user_show__main {
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .greeting {
+    flex-direction: column;
+    align-items: start;
+  }
+  .posts__wrapper{
+    max-height: 1000px;
+    overflow: auto;
+  }
+  .card {
+    max-width: 98vw;
+  }
 }
