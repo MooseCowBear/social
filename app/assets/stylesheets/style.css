@@ -69,9 +69,9 @@ a:not([class]) {
   --text-secondary: rgba(179, 179, 179, 0.9);
 
   --radius: 10px;
-  --gradient-one: #4158D0;
-  --gradient-two: #C850C0;
-  --gradient-three: #FFCC70;
+  --gradient-one: rgb(65, 88, 208);
+  --gradient-two: rgba(200, 80, 192, 0.9);
+  --gradient-three: rgba(255, 204, 112, 0.9);
 }
 
 .heart.color svg, .bubble.color svg {
@@ -319,11 +319,6 @@ main {
   gap: 1rem;
 }
 
-.default-avatar {
-  height: 50px;
-  width: 50px;
-}
-
 input[type="text"], 
 textarea,
 input[type="email"],
@@ -331,7 +326,7 @@ input[type="password"] {
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 2px solid var(--gradient-three);
+  border-bottom: 2px solid var(--gradient-two);
   background-color: inherit;
   color: inherit;
   font-size: 0.9rem;
@@ -344,9 +339,9 @@ input[type="submit"],
 .omniauth,
 .devise_cancel button,
 .request {
-  border: 2px solid var(--gradient-three);
+  border: 2px solid var(--gradient-two);
   border-radius: 5px;
-  background-color: var(--gradient-three);
+  background-color: var(--gradient-two);
   margin-top: 1rem;
   color: var(--background-card);
   text-transform: uppercase;
@@ -364,9 +359,9 @@ input[type="file"]{
 }
 
 input::file-selector-button {
-  border: 2px solid var(--gradient-three);
+  border: 2px solid var(--gradient-two);
   border-radius: 5px;
-  background-color: var(--gradient-three);
+  background-color: var(--gradient-two);
   color: var(--background-card);
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -392,7 +387,7 @@ input::file-selector-button:focus,
 }
 
 input[type=checkbox] {
-  accent-color: var(--gradient-three);
+  accent-color: var(--gradient-two);
 }
 
 .checkbox__wrapper {
@@ -487,6 +482,13 @@ input[type=checkbox] {
   margin-bottom: 1rem;
 }
 
+.sidebar__content img { /* NEED TO TEST THIS */
+  height: 30px;
+  width: 30px;
+  padding: 1rem;
+  border-radius: 50%;
+}
+
 .people__wrapper {
   display: flex;
   flex-direction: column;
@@ -524,7 +526,7 @@ input[type=checkbox] {
 }
 
 .no_avatar.profile {
-  align-self: center; /* or leave as start? */
+  /* align-self: center;  or leave as start? */
 }
 
 .initial {
@@ -596,6 +598,16 @@ ul {
 
 .clickable:hover {
   cursor: pointer;
+}
+
+.primary {
+  color: var(--text);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: last baseline;
 }
 
 /* for the stimulus controller */
