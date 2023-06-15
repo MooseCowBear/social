@@ -2,17 +2,18 @@
   <li>
     <div class="comment-card">
       <div class="comment-card__header">
-        <%= display_name(comment.user) %>
-        <%= display_date(comment.created_at) %>
+        <p><span class="bold"><%= display_name(comment.user) %></span> said:</p>
+        <p><%= display_date(comment.created_at) %></p>
       </div>
-      <%= comment.body %>
+      <p><%= comment.body %></p>
       <% if comment.user == current_user %>
+        <div class="comment--actions">
         <%= link_to "Edit", edit_post_comment_path(post_id: comment.commentable.id, id: comment.id) %>
         <%= button_to "Delete", comment_path(comment), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+        </div>
       <% end %>
     </div>
     <%= link_to "Reply", new_comment_comment_path(comment_id: comment, parent_post_id: comment.parent_post_id), data: { turbo_frame: dom_id_for_records(comment, Comment.new) } %>
-    <h3>replies</h3>
    
       <%= turbo_frame_tag dom_id_for_records(comment, Comment.new) %>
       <ul>

@@ -2,7 +2,7 @@
   <div class="user_show__header">
     <% if @user == current_user %>
       <h1>Your Feed</h1>
-      <%= link_to "Create A Post", new_post_path, data: { turbo_frame: dom_id(Post.new) } %>
+      <%= link_to "New Post", new_post_path, data: { turbo_frame: dom_id(Post.new) } %>
     <% else %>
       <h1><%= display_name(@user) %>'s page</h1>
       <% if @user.profile %>

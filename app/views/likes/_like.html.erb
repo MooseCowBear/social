@@ -1,7 +1,13 @@
-<p><%= post.likes_count %> likes</p>
-<% like = post.user_like(current_user) %>
-<% if like %>
-  <%= button_to "Unlike", post_like_path(post_id: post.id, id: like.id), method: :delete %>
-<% else %>
-  <%= button_to "Like", post_likes_path(post.id), method: :post %>
-<% end %>
+<div class="count_container">
+  <% like = post.user_like(current_user) %>
+  <% if like %>
+    <%= button_to post_like_path(post_id: post.id, id: like.id), method: :delete, class: "icon_button" do %>
+      <%= render partial: "shared/heart", locals: { liked: true } %>
+    <% end %>
+  <% else %>
+    <%= button_to post_likes_path(post.id), method: :post, class: "icon_button"  do %>
+      <%= render partial: "shared/heart", locals: { liked: false } %>
+    <% end %>
+  <% end %>
+  <p><%= post.likes_count %> likes</p>
+</div>

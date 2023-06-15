@@ -1,13 +1,17 @@
-<h1>Post Show Page</h1>
+<div class="post_show__wrapper">
+  <h1>Post Show Page</h1>
 
-<%= render @post, show: true %>
+  <%= render @post, show: true %>
 
-<div class="header">
-  <h2>Comments</h2>
-  <%= link_to "Comment", new_post_comment_path(post_id: @post, parent_post_id: @post), data: { turbo_frame: dom_id_for_records(@post, Comment.new) } %>
+  <div class="comments header">
+    <h2>Comments</h2>
+    <%= link_to "add a comment", new_post_comment_path(post_id: @post, parent_post_id: @post), data: { turbo_frame: dom_id_for_records(@post, Comment.new) } %>
+  </div>
+
+  <%= turbo_frame_tag dom_id_for_records(@post, Comment.new) %>
+  <%= turbo_frame_tag "comments" do %>
+    <ul class="comments--main">
+      <%= render @post.comments.includes(:user).order(created_at: :desc) || "There are no comments yet." %>
+    </ul>
+  <% end %>
 </div>
-
-<%= turbo_frame_tag dom_id_for_records(@post, Comment.new) %>
-<%= turbo_frame_tag "comments" do %>
-  <%= render @post.comments.includes(:user).order(created_at: :desc) || "There are no comments yet." %>
-<% end %>

@@ -1,31 +1,53 @@
-<h1>Manage Your Friends</h1>
+<div class="friends__wrapper">
+  <h1>Manage Your Friends</h1>
 
-<h3>friends</h3>
-<% @friends.each do |f| %>
-  <%= display_name(f) %> 
-  <%= button_to "Unfriend", unfriend_friend_requests_path(friend: f) %>
-<% end %>
-
-<h3>Outstanding Requests From Friends</h3>
-<% @pending.each do |f| %>
-  <%= display_name(f) %>
-  <%= button_to "Accept", accept_friend_requests_path(friend: f) %>
-  <%= button_to "Decline", decline_friend_requests_path(friend: f) %>
-<% end %>
-
-<h3>Outstanding Requests To Friends</h3>
-<% @requested.each do |f| %>
-  <%= display_name(f) %>
-  <%= button_to "Unrequest", unfriend_friend_requests_path(friend: f) %>
-<% end %>
-
-<div data-controller="toggle" data-toggle-change-class="hidden">
-  <button data-action="toggle#toggle">View Declined Requests</button>
-  <div data-toggle-target="content" class="declined hidden">
-    <h3>Declined Requests</h3>
-    <% @declined.each do |f| %>
-      <%= display_name(f) %>
-      <%= button_to "Accept", accept_friend_requests_path(friend: f) %>
+  <h3>friends</h3>
+  <div class="friend_container">
+    <% @friends.each do |f| %>
+      <div class="row">
+        <%= display_name(f) %> 
+        <%= button_to "Unfriend", unfriend_friend_requests_path(friend: f) %>
+      </div>
     <% end %>
+    <%= "You have no friends." unless @friends.any? %>
+  </div>
+
+  <h3>Outstanding Requests From Friends</h3>
+  <div class="friend_container">
+    <% @pending.each do |f| %>
+      <div class="row">
+        <%= display_name(f) %>
+        <%= button_to "Accept", accept_friend_requests_path(friend: f) %>
+        <%= button_to "Decline", decline_friend_requests_path(friend: f) %>
+      </div>
+    <% end %>
+    <%= "No outstanding requests." unless @pending.any? %>
+  </div>
+
+  <h3>Outstanding Requests To Friends</h3>
+  <div class="friend_container">
+    <% @requested.each do |f| %>
+      <div class="row">
+        <%= display_name(f) %>
+        <%= button_to "Unrequest", unfriend_friend_requests_path(friend: f) %>
+      </div>
+    <% end %>
+    <%= "No outstanding requests." unless @requested.any? %>
+  </div>
+
+  <div data-controller="toggle" data-toggle-change-class="hidden">
+    <button data-action="toggle#toggle">View Declined Requests</button>
+    <div data-toggle-target="content" class="declined hidden">
+      <h3>Declined Requests</h3>
+      <div class="friend_container">
+        <% @declined.each do |f| %>
+          <div class="row">
+            <%= display_name(f) %>
+            <%= button_to "Accept", accept_friend_requests_path(friend: f) %>
+          </div>
+        <% end %>
+        <%= "No declined requests." unless @declined.any? %>
+      </div>
+    </div>
   </div>
 </div>
