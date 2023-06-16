@@ -1,12 +1,15 @@
 <div class="card profile">
-  <% if @profile.avatar.attached? %>
-    <%= image_tag @profile.small_avatar %>
-  <% else %>
-    <div class="no_avatar profile">
-      <p class="initial"><%= initial(@profile.user) %></p>
-    </div>
-  <% end %>
-
+  <div class="image_div">
+    <% if @profile.avatar.attached? %>
+      
+        <%= image_tag @profile.small_avatar %>
+     
+    <% else %>
+      <div class="no_avatar profile">
+        <p class="initial"><%= initial(@profile.user) %></p>
+      </div>
+    <% end %>
+  </div>
   <p>Location: <%= @profile.location %></p>
   <p>Birthday: <%= @profile.birthday.strftime("%B %-d") %></p>
   <p class="preserve_spacing">Interests: <%= @profile.interests %></p>

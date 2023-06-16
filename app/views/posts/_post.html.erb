@@ -31,13 +31,13 @@
     </div>
 
     <% if post.image.attached? %>
-      <div class="post-image">
+      <div class="post_image">
         <%= image_tag post.resized_image%>
       </div>
     <% end %>
 
     <% unless post.body.nil? %>
-      <div class="post-body">
+      <div class="post_body">
         <%= post.body %>
       </div>
     <% end %>
