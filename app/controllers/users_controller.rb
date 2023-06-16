@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @profile = @user.profile
     @friends = @user.friends.includes(:profile)
+    
     if @user == current_user
       @posts = Post.where(user_id: post_ids(@user)).includes(user: :profile).includes(:image_attachment).order(created_at: :desc)
     elsif @user.friend_with?(current_user)

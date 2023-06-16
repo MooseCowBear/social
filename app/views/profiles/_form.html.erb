@@ -1,34 +1,39 @@
-<div class="wrapper">
-  <%= form_with model: @profile, html: {class: "form"} do |f| %>
-    <div class="form-field">
-      <%= f.label :username, "Username" %>
-      <%= f.text_field :username %>
-    </div>
-    
-    <div class="form-field">
-      <%= f.label :location, "Location" %>
-      <%= f.text_field :location %>
-    </div>
 
-    <div class="form-field">
-      <%= f.label :birthday, "Birthday" %>
-      <%= f.date_select :birthday, { selected: 18.year.ago, order: [:month, :day, :year], start_year: Date.current.year - 100, end_year: Date.current.year - 13 } %>
-    </div>
+<%= form_with model: @profile, html: { class: "form card profile"} do |f| %>
+  <div class="form-field">
+    <%= f.label :username, "Username" %>
+    <%= f.text_field :username %>
+  </div>
+  
+  <div class="form-field">
+    <%= f.label :location, "Location" %>
+    <%= f.text_field :location %>
+  </div>
 
-    <div class="form-field">
-      <%= f.label :time_zone, "Time Zone" %>
+  <div class="form-field">
+    <%= f.label :birthday, "Birthday" %>
+    <div class="datetime">
+      <%= f.date_select :birthday, { selected: 18.year.ago, order: [:month, :day, :year], start_year: Date.current.year - 100, end_year: Date.current.year - 13, class:"datetime_select" } %>
+    </div>
+  </div>
+
+  <div class="form-field ">
+    <%= f.label :time_zone, "Time Zone" %>
+    <div class="select">
       <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, default: "Eastern Time (US & Canada)") %>
+      <span class="focus"></span>
     </div>
+  </div>
 
-    <div class="form-field">
-    <%= f.label :interests, "Things I Like" %>
-    <%= f.text_area :interests %>
-    </div>
+  <div class="form-field">
+  <%= f.label :interests, "Things I Like" %>
+  <%= f.text_area :interests %>
+  </div>
 
-    <div class="form-field">
-      <%= f.label :avatar %>
-      <%= f.file_field :avatar %> 
-    </div>
-    <%= f.submit %>
-  <% end %>
-</div>
+  <div class="form-field">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %> 
+  </div>
+  <%= f.submit %>
+<% end %>
+

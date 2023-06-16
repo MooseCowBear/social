@@ -1,7 +1,11 @@
-<h1>Edit your Profile</h1>
-<%= render "form" %>
+<div class="form__wrapper">
+  <h1>Edit your Profile</h1>
+  
+  <%= render "form" %>
 
-<%= link_to "Destroy", profile_path(@profile), data: {
-                          turbo_method: :delete,
-                          turbo_confirm: "Are you sure?"
-                        } %>
+  <%= link_to "Destroy", profile_path(@profile), data: {
+                            turbo_method: :delete,
+                            turbo_confirm: "Are you sure?"
+                          } %>
+
+</div>

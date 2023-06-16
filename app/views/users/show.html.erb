@@ -27,7 +27,7 @@
           <% if @profile %>
             <%= render @profile %>
           <% else %>
-            <p>filler content</p>
+            <%= render partial: "profiles/no_profile", locals: { user: @user } %>
           <% end %>
         </div>
       </div>
