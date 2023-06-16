@@ -1,7 +1,7 @@
 <%= form_with url: users_url, method: :get, class: "user_search" do |f| %>
   <div>
     <%= f.label :query, "Find people:" %>
-    <%= f.text_field :query %>
+    <%= f.text_field :query, value: params[:query] %>
   </div>
   <%= f.submit "Search", :type => :image, :src => image_path("magnify.svg"), :class => "magnify" %>
 <% end %>

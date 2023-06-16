@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all_except(current_user).includes([:profile]).order(:email) #is this what we want?
+    @users = User.search(search_params, current_user)
   end
 
   def show
@@ -21,5 +21,9 @@ class UsersController < ApplicationController
 
   def post_ids(user) 
     user.friends.pluck(:id) << user.id
+  end
+
+  def search_params
+    params.permit(:query)
   end
 end

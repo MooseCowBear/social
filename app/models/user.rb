@@ -30,6 +30,14 @@ class User < ApplicationRecord
     end
   end
 
+  def self.search(search_params, user)
+    unless search_params.empty? 
+      User.search_term(search_params[:query]).all_except(user).includes([:profile]).order(:email)
+    else
+      User.all_except(user).includes([:profile]).order(:email)
+    end
+  end
+
   def get_time_zone
     if self.profile
       self.profile.time_zone
@@ -58,5 +66,11 @@ class User < ApplicationRecord
       ids += friend.friend_requests.pluck(:friend_id)
     end
     ids.uniq
+  end
+
+  private
+
+  def self.search_term(term)
+    User.left_outer_joins(:profile).where("lower(users.email) LIKE :t OR lower(profiles.username) LIKE :t", t: "%#{term.downcase}%")
   end
 end
