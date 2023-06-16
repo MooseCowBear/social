@@ -9,9 +9,9 @@ class UsersController < ApplicationController
     @friends = @user.friends.includes(:profile)
     
     if @user == current_user
-      @posts = Post.where(user_id: post_ids(@user)).includes(user: :profile).includes(:image_attachment).order(created_at: :desc)
+      @posts = Post.where(user_id: post_ids(@user)).includes(user: :profile).with_attached_image.order(created_at: :desc)
     elsif @user.friend_with?(current_user)
-      @posts = Post.where(user_id: @user.id).includes(user: :profile).includes(:image_attachment).order(created_at: :desc)
+      @posts = Post.where(user_id: @user.id).includes(user: :profile).with_attached_image.order(created_at: :desc)
     else
       redirect_to root_path, notice: "You may only view page's of friends."
     end

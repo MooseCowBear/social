@@ -30,7 +30,7 @@ class FriendRequest < ApplicationRecord
   end
 
   def self.decline_request(sender, receiver)
-    update_side(receiver, sender, "declined") #only receiver of a request can decline. moves status from pending to declined
+    update_side(receiver, sender, "declined") 
   end
 
   def self.unfriend(a, b)
