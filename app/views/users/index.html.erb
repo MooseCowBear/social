@@ -3,6 +3,6 @@
   <%= render "search" %>
   <div class="user_index__wrapper">
     <%= render @users, locals: { request: true } %>
-    <%= "There is no one else to friend." unless @users.any? %>
+    <%= "We couldn't find anyone else for you to friend." unless @users.any? %>
   </div>
 </div>
