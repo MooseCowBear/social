@@ -65,6 +65,7 @@ a:not([class]) {
   
   --divider-100: #404040;
   --divider-200: #282828;
+
   --text: rgba(255, 255, 255, 0.95);
   --text-secondary: rgba(179, 179, 179, 0.9);
 
@@ -254,7 +255,7 @@ header {
   justify-content: space-between;
   align-items: center;
   background-color: var(--background-body);
-  border: 2px solid rgba(7, 7, 7, 0.12);
+  /*border: 2px solid rgba(7, 7, 7, 0.12);*/
   padding: 1rem clamp(10px, 5vw, 2rem);
 }
 
@@ -344,7 +345,7 @@ input[type="submit"],
 .omniauth,
 .devise_cancel button,
 .request {
-  border: 2px solid var(--gradient-two);
+  border: 2px solid transparent;
   border-radius: 5px;
   background-color: var(--gradient-two);
   margin-top: 1rem;
@@ -700,11 +701,6 @@ select:focus + .focus {
   border-radius: inherit;
 }
 
-select option {
-  background: var(--divider-200);
-  color: var(--text);
-}
-
 .user_search {
   display: flex;
   gap: 0.5rem;
@@ -811,5 +807,29 @@ select option {
   }
   .card {
     max-width: 98vw;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-body: rgb(238, 238, 238); 
+    --background-card: rgb(245, 245, 245);
+    --text: rgba(68, 68, 68, 0.9);
+    --text-secondary: rgba(140, 140, 140);
+  }
+
+  input[type="submit"]:hover, 
+  input[type="submit"]:focus,
+  input::file-selector-button:hover,
+  input::file-selector-button:focus,
+  .omniauth:hover,
+  .omniauth:focus,
+  .devise_cancel button:hover,
+  .devise_cancel button:focus,
+  .request:hover,
+  .request:focus,
+  .error__card .button:hover, 
+  .error__card .button:focus {
+    border-right: 2px solid var(--gradient-three);
   }
 }
