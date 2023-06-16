@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'notifications/index'
   root "home#index"
 
   devise_for :users, controllers: {
@@ -38,4 +37,8 @@ Rails.application.routes.draw do
   resources :comments
 
   resources :notifications, only: [:index]
+
+  match "/404", to: "errors#not_found", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all 
+  match "/422", to: "errors#unprocessable_content", via: :all 
 end
