@@ -1,2 +1,3 @@
-<%= display_name(notification.item.user) %> has sent you a 
-<%= link_to "friend request", friend_requests_path %>.
+<%= link_to friend_requests_path  do %>
+  <span><%= display_name(notification.item.user) %> has sent you a friend request.</span>
+<% end %>

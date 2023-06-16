@@ -1,5 +1,13 @@
-<h1>Notifications</h1>
+<div class="notifications_page">
+  <h1>Notifications</h1>
 
-<ul>
-  <%= render @notifications || "No notifications." %>
-</ul>
+  <% if @notifications.any? %>
+    <ul class="notify__wrapper">
+      <%= render @notifications %>
+    </ul>
+  <% else %>
+    <div class="card no-notifications">
+      No notifications at this time.
+    </div>
+  <% end %>
+</div>

@@ -1,2 +1,3 @@
-<%= display_name(notification.item.user) %> has commented on 
-<%= link_to notification.item.ancestor_post.title, post_path(notification.item.ancestor_post) %>.
+<%= link_to post_path(notification.item.ancestor_post) do %>
+  <span><%= display_name(notification.item.user) %> has commented on <%= notification.item.ancestor_post.title %>.</span>
+<% end %>

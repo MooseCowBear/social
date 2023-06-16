@@ -1,2 +1,3 @@
-<%= display_name(notification.item.user) %> has published a new 
-<%= link_to "post", post_path(notification.item) %>.
+ <%= link_to post_path(notification.item) do %>
+  <span><%= display_name(notification.item.user) %> has published a new post.</span>
+<% end %>

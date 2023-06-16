@@ -1,4 +1,4 @@
-<li id="<%= dom_id(notification) %>">
-  <%= display_date(notification.created_at, notification.user) %>
+<li class="notify" id="<%= dom_id(notification) %>">
+  <%= display_date(notification.created_at, notification.user) %>:
   <%= render "notifications/#{notification.item_type.downcase}", notification: notification %>
 </li>
