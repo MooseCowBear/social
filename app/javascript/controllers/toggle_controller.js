@@ -6,22 +6,25 @@ export default class extends Controller {
 
   toggle() {
     this.contentTargets.forEach(elem => {
-      console.log("the button was pressed", elem, this.changeClass);
       elem.classList.toggle(this.changeClass);
     });
   }
 
   remove() {
     this.contentTargets.forEach(elem => {
-      console.log("the remove button was pressed", elem, this.changeClass);
       elem.classList.remove(this.changeClass);
     });
   }
 
   add() {
     this.contentTargets.forEach(elem => {
-      console.log("the add button was pressed", elem, this.changeClass);
       elem.classList.add(this.changeClass);
     });
+  }
+
+  disconnect() {
+    //so menu will not remain open if navigating with the back button
+    const menu = document.getElementById("menu");
+    menu.classList.add("hidden");
   }
 }
