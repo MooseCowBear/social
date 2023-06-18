@@ -18,7 +18,7 @@ class Post < ApplicationRecord
 
   default_scope { order(created_at: :desc) } 
 
-  def self.find_with_counts(user_ids) 
+  def self.find_posts_with_counts(user_ids) 
     Post.where(user_id: user_ids).
       includes({ user: [:profile] }).
       with_attached_image.
@@ -27,6 +27,15 @@ class Post < ApplicationRecord
       select("posts.*, COUNT(likes.id) AS like_count, COUNT(comments.id) AS comment_count").
       group("posts.id")
   end
+
+  #do we still get the benefit of above??? NO
+  #def comment_count 
+    #descendants.size
+  #end
+
+  #def like_count
+    #likes.size 
+  #end
 
   def resized_image
     image.variant(resize_to_limit: [300, 300]).processed

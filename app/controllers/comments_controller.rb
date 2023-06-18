@@ -16,19 +16,15 @@ class CommentsController < ApplicationController
   def create
     @comment =  @commentable.comments.new(comment_params)
     @comment.user = current_user
-    
-    respond_to do |format|
-      if @comment.save
-        @post = Post.find(@comment.parent_post_id)
-        @comment_count = @post.comment_count
+    @post = Post.find(@comment.parent_post_id)
+
+    if @comment.save
+      respond_to do |format|
         format.html { redirect_to @commentable, notice: "Comment was successfully created." }
         format.turbo_stream { flash.now[:notice] = "Comment was successfully created." }
-      else
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.replace(dom_id_for_records(@commentable, @comment), partial: "comments/form", locals: { comment: @comment, commentable: @commentable })
-        }
-        format.html { render :new, status: :unprocessable_entity }
       end
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -70,9 +66,9 @@ class CommentsController < ApplicationController
 
   def set_commentable
     if params[:comment_id]
-      @commentable = Comment.find_by_id(params[:comment_id]) 
+      @commentable = Comment.find_by(id: params[:comment_id]) 
     elsif params[:post_id]
-      @commentable = Post.find_by_id(params[:post_id])
+      @commentable = Post.find_by(id: params[:post_id].to_i)
     end
   end
 end

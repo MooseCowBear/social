@@ -1,13 +1,4 @@
 <div class="count_container">
-  <%= render partial: "shared/bubble", locals: { commented: post.comment_count } %>
-  <p class="space"><%= post.comment_count %> comments</p>
+  <%= render partial: "shared/bubble", locals: { commented: @comments_count || post.comment_count } %>
+  <p class="space"><%= @comments_count || post.comment_count %> comments</p>
 </div>
-
-<% if false %>
-<%= turbo_frame_tag "#{post.id}_comment_count" do %>
-            <div class=""count_container">
-              <%= render partial: "shared/bubble", locals: { commented: post.comment_count } %>
-              <%= post.comment_count %>
-            </div>
-<% end %>
-<% end %>

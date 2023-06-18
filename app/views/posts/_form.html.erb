@@ -1,22 +1,23 @@
-
 <%= form_with model: @post, html: {class: "form card"} do |f| %>
-  <% if f.object.errors.any? %>
-    <div>
-      <% f.object.errors.full_messages.each do |msg| %>
-        <p><%= msg %></p>
-      <% end %>
-    </div>
-  <% end %>
-
   <%= f.hidden_field :user_id, :value => current_user.id %>
 
   <div class="form-field">
-    <%= f.label :title, "Title" %>
+    <div class="inline">
+      <%= f.label :title, "Title" %>
+      <% f.object.errors.full_messages_for(:title).each do |msg| %>
+        <span class="error"><%= msg %></span>
+      <% end %>
+    </div>
     <%= f.text_field :title %>
   </div>
   
   <div class="form-field">
-    <%= f.label :body, "Body" %>
+    <div class="inline">
+      <%= f.label :body, "Body" %>
+      <% f.object.errors.full_messages_for(:post).each do |msg| %>
+        <span class="error"><%= msg %></span>
+      <% end %>
+    </div>
     <%= f.text_area :body %>
   </div>
 

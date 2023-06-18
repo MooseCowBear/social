@@ -3,11 +3,13 @@ class PostsController < ApplicationController
   before_action :confirm_ownership, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.find_with_counts(current_user.id)
+    @posts = Post.find_posts_with_counts(current_user.id)
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:id]) #PROBLEM -- index includes a .comment_count, .like_count...
+    @likes = @post.likes.size
+    @comments_count = @post.descendants.size
   end
 
   def new

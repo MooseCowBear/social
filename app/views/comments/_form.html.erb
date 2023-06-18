@@ -1,14 +1,11 @@
-<%= form_with model: [commentable, comment], html: {class: "form card"} do |f| %>
-  <% if f.object.errors.any? %>
-    <div>
-      <% f.object.errors.full_messages.each do |msg| %>
-        <p><%= msg %></p>
-      <% end %>
-    </div>
-  <% end %>
-  
-  <%= f.hidden_field :parent_post_id, :value => @post.id %>
-  <%= f.label :body, "Comment: " %>
+<%= form_with model: [commentable, comment], html: {class: "form card"} do |f| %> 
+  <%= f.hidden_field :parent_post_id, :value => post.id %>
+  <div class="inline">
+    <%= f.label :body, "Comment: " %>
+    <% f.object.errors.full_messages_for(:body).each do |msg| %>
+      <span class="error"><%= msg %></span>
+    <% end %>
+  </div>
   <%= f.text_area :body %>
   <%= f.submit %>
   <%= link_to "cancel", :back %>

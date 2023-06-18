@@ -8,9 +8,9 @@ class UsersController < ApplicationController
     @friends = @user.friends.includes(:profile)
     
     if @user == current_user
-      @posts = Post.find_with_counts(post_ids(@user))
+      @posts = Post.find_posts_with_counts(post_ids(@user))
     elsif @user.friend_with?(current_user)
-      @posts = Post.find_with_counts(@user.id)
+      @posts = Post.find_posts_with_counts(@user.id)
     else
       redirect_to root_path, notice: "You may only view page's of friends."
     end
