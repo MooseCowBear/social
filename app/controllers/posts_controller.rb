@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :confirm_ownership, only: [:edit, :update, :destroy]
 
   def index
-    @posts = current_user.posts.with_attached_image.order(created_at: :desc)
+    @posts = Post.find_with_counts(current_user.id)
   end
 
   def show

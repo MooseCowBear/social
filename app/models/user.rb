@@ -54,6 +54,12 @@ class User < ApplicationRecord
     friends.find_by(id: other.id)
   end
 
+  def post_like(id) #to avoid n + 1 db calls.
+    likes.detect { |like| like.post_id == id }
+  end
+
+  ## WILL WE ACTUALLY USE THESE??
+
   def friends_of_friends
     #very inefficient
     User.joins(:friend_requests).where(:id => friend_friend_ids).where.not(id: (self.potential_friends + [self]).map(&:id))
@@ -71,6 +77,6 @@ class User < ApplicationRecord
   private
 
   def self.search_term(term)
-    User.left_outer_joins(:profile).where("lower(users.email) LIKE :t OR lower(profiles.username) LIKE :t", t: "%#{term.downcase}%")
+    User.left_outer_joins(:profile).where("lower(users.email) LIKE :t OR lower(profiles.username) LIKE :t", t: "#{term.downcase}%")
   end
 end

@@ -14,7 +14,7 @@
   <body>
     <header>
       <%= link_to "so social", root_path, class: "logo" %>
-      <% unless current_page?(new_user_session_path)|| current_page?(new_user_registration_path) || current_page?(new_user_password_path) %>
+      <% if user_signed_in? %>
         <div data-controller="toggle" data-toggle-change-class="hidden">
           <div data-action="click->toggle#remove" class="clickable">
             <%= render partial: "shared/hamburger" %>
@@ -35,7 +35,7 @@
           <%= render "layouts/flash" %>
         </div>
 
-        <% unless current_page?(new_user_session_path)|| current_page?(new_user_registration_path) || current_page?(new_user_password_path) %>
+        <% if user_signed_in? %>
           <div class="greeting">
             <h2><span class="lowercase">Hello, </span><%= display_name(current_user) %></h2>
             <div class="notification__wrapper">

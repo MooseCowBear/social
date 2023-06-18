@@ -24,8 +24,8 @@
       <div class="sidebar__content">
         <h3>About</h3>
         <div class="people__wrapper">
-          <% if @profile %>
-            <%= render @profile %>
+          <% if @user.profile %>
+            <%= render partial: "profiles/profile", locals: { profile: @user.profile } %>
           <% else %>
             <%= render partial: "profiles/no_profile", locals: { user: @user } %>
           <% end %>

@@ -16,20 +16,20 @@ class Post < ApplicationRecord
   validate :acceptable_image
   validate :has_content
 
+  default_scope { order(created_at: :desc) } 
+
+  def self.find_with_counts(user_ids) 
+    Post.where(user_id: user_ids).
+      includes({ user: [:profile] }).
+      with_attached_image.
+      left_joins(:likes).
+      joins("LEFT JOIN comments ON posts.id = comments.parent_post_id").
+      select("posts.*, COUNT(likes.id) AS like_count, COUNT(comments.id) AS comment_count").
+      group("posts.id")
+  end
+
   def resized_image
     image.variant(resize_to_limit: [300, 300]).processed
-  end
-
-  def comment_count
-    descendants.count
-  end
-
-  def likes_count #is this nec?
-    likes.count
-  end
-
-  def user_like(user)
-    likes.find_by(user_id: user.id)
   end
 
   def recipients
