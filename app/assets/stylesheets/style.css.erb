@@ -73,6 +73,7 @@ a:not([class]) {
   --gradient-one: rgb(65, 88, 208);
   --gradient-two: rgba(200, 80, 192, 0.9);
   --gradient-three: rgba(255, 204, 112, 0.9);
+  --gradient: linear-gradient(43deg, var(--gradient-one) 0%, var(--gradient-two) 46%, var(--gradient-three) 100%);
 }
 
 .heart.color svg, .bubble.color svg {
@@ -129,8 +130,8 @@ svg {
 
   text-align: center;
 
-  background-color: #4158D0;
-  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  background-color: var(--gradient-two);
+  background-image: var(--gradient);
              
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -386,7 +387,7 @@ input::file-selector-button:focus,
 .devise_cancel button:focus,
 .request:hover,
 .request:focus {
-  background: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  background: var(--gradient);
   border: 2px solid transparent;
   border-left: 2px solid var(--gradient-one);
   cursor: pointer;
@@ -768,8 +769,8 @@ select:focus + .focus {
 .error__card h1 {
   font-size: 4rem;
   font-weight: 600;
-  background-color: #4158D0;
-  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  background-color: var(--gradient-two);
+  background-image: var(--gradient);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
 }
@@ -786,7 +787,7 @@ select:focus + .focus {
 }
 
 .error__card .button:hover, .error__card .button:focus {
-  background: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  background: var(--gradient);
   border: 2px solid transparent;
   border-left: 2px solid var(--gradient-one);
 }
