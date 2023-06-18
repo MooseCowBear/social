@@ -17,8 +17,8 @@ class FriendRequest < ApplicationRecord
       create!(user_id: sender.id, friend_id: receiver.id, status: "requested") 
       create!(user_id: receiver.id, friend_id: sender.id, status: "pending")
     end
-  rescue ActiveRecord::RecordInvalid 
-    return nil
+    rescue ActiveRecord::RecordInvalid 
+      return false
   end
 
   def self.accept_request(sender, receiver)
@@ -36,9 +36,11 @@ class FriendRequest < ApplicationRecord
   def self.unfriend(a, b)
     transaction do
       #remove both rows from the table if the friendship  
-      destroy(find_by(user_id: a, friend_id: b).id)
-      destroy(find_by(user_id: b, friend_id: a).id)
+      find_by(user_id: a, friend_id: b).destroy!
+      find_by(user_id: b, friend_id: a).destroy!
     end
+    rescue ActiveRecord::RecordNotDestroyed
+      return false
   end
 
   def recipients
@@ -49,7 +51,7 @@ class FriendRequest < ApplicationRecord
 
   def self.update_side(a, b, new_status)
     request = find_by(user_id: a.id, friend_id: b.id)
-    request.update!(status: new_status)
+    request.update(status: new_status)
   end
 
   def not_self

@@ -30,7 +30,10 @@ class FriendRequestsController < ApplicationController
   end
 
   def unfriend
-    FriendRequest.unfriend(current_user.id, params[:friend])
+    response = FriendRequest.unfriend(current_user.id, params[:friend])
+    unless response 
+      flash[:notice] = "Something went wrong."
+    end
     redirect_to friend_requests_path
   end
 end
