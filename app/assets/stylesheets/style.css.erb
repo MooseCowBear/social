@@ -62,72 +62,14 @@ a:not([class]) {
 :root {
   --background-body: rgb(18, 18, 18);
   --background-card: rgb(41, 41, 41);
-
   --text: rgba(255, 255, 255, 0.95);
   --text-secondary: rgba(179, 179, 179, 0.9);
-
   --radius: 10px;
   --gradient-one: rgb(65, 88, 208);
   --gradient-two: rgba(200, 80, 192, 0.9);
   --gradient-three: rgba(255, 204, 112, 0.9);
   --gradient: linear-gradient(43deg, var(--gradient-one) 0%, var(--gradient-two) 46%, var(--gradient-three) 100%);
-}
-
-.heart.color svg, .bubble.color svg {
-  fill: url('#shape-gradient');
-  z-index: 0;
-}
-
-.svg_container {
-  font-size: 0;
-  height: 30px;
-  width: 30px;
-}
-
-svg {
-  transform: scale(1);
-  fill: var(--text);
-}
-
-.icon_button.like:hover .heart > svg, 
-.icon_button.like:focus .heart > svg {
-  fill: url('#shape-gradient');
-}
-
-.icon_button {
-  background-color: transparent;
-  border: transparent;
-}
-
-.icon_button:hover {
-  cursor: pointer;
-}
-
-.count_container {
-  display: flex;
-  align-items: center;
-}
-
-.counts__wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.space {
-  margin-left: 0.2rem;
-}
-
-.logo {
-  text-decoration: none;
-  font-size: 2.5rem;
-  font-family: "Raleway";
-  line-height: 0.8;
-  text-transform: lowercase;
-  background-color: var(--gradient-two);
-  background-image: var(--gradient);         
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
+  --restricted-width: clamp(300px, 60vw, 600px);
 }
 
 body {
@@ -154,6 +96,61 @@ p {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.heart.color svg, .bubble.color svg {
+  fill: url('#shape-gradient');
+  z-index: 0;
+}
+
+.svg_container {
+  font-size: 0;
+  height: 30px;
+  width: 30px;
+}
+
+svg {
+  fill: var(--text);
+}
+
+.button--icon.like:hover .heart > svg, 
+.button--icon.like:focus .heart > svg {
+  fill: url('#shape-gradient');
+}
+
+.button--icon {
+  background-color: transparent;
+  border: transparent;
+}
+
+.count_container {
+  display: flex;
+  align-items: center;
+}
+
+.counts__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.space {
+  margin-left: 0.2rem;
+}
+
+.logo {
+  font-size: 2.5rem;
+  font-family: "Raleway";
+  line-height: 0.8;
+  text-transform: lowercase;
+  background-color: var(--gradient-two);
+  background-image: var(--gradient);         
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
 
 .lowercase {
@@ -222,11 +219,11 @@ a {
   grid-template-columns: 1fr auto;
 }
 
-.reply {
+.link--reply {
   align-self: end;
 }
 
-.owner_actions button {
+.button--link {
   background-color: transparent;
   border: none;
   outline: none;
@@ -235,7 +232,9 @@ a {
   font-weight: inherit;
 }
 
-.owner_actions button:hover {
+.button--link, 
+.clickable:hover,
+.button--icon:hover {
   cursor: pointer;
 }
 
@@ -258,7 +257,7 @@ header {
   top: 50px;
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(300px, 60vw, 600px);
+  width: var(--restricted-width);
   z-index: 10;
   border-radius: var(--radius);
   display: flex;
@@ -333,10 +332,10 @@ input[type="password"] {
   outline: none;
 }
 
+input::file-selector-button,
 input[type="submit"],
-.omniauth,
-.devise_cancel button,
-.request {
+.button--wide,
+.button {
   border: 2px solid transparent;
   border-radius: 5px;
   background-color: var(--gradient-two);
@@ -348,36 +347,26 @@ input[type="submit"],
   outline: none;
 }
 
-input[type="file"], .omniauth {
-  width: 100%; 
-}
-
-input::file-selector-button {
-  border: 2px solid var(--gradient-two);
-  border-radius: 5px;
-  background-color: var(--gradient-two);
-  color: var(--background-card);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.9rem;
-  margin-top: 1rem;
-  outline: none;
-}
-
 input[type="submit"]:hover, 
 input[type="submit"]:focus,
 input::file-selector-button:hover,
 input::file-selector-button:focus,
-.omniauth:hover,
-.omniauth:focus,
-.devise_cancel button:hover,
-.devise_cancel button:focus,
-.request:hover,
-.request:focus {
+.button--wide:hover,
+.button--wide:focus,
+.button:hover,
+.button:focus {
   background: var(--gradient);
   border: 2px solid transparent;
   border-left: 2px solid var(--gradient-one);
   cursor: pointer;
+}
+
+.error__card .button {
+  padding: 0 0.5rem;
+}
+
+input[type="file"], .button--wide {
+  width: 100%; 
 }
 
 .devise_cancel.card {
@@ -395,7 +384,7 @@ input[type=checkbox] {
 }
 
 .devise_form__wrapper, .form__wrapper, .notifications_page {
-  width: clamp(300px, 60vw, 600px);
+  width: var(--restricted-width);
   display: flex;
   flex-direction: column;
 }
@@ -595,10 +584,6 @@ input[type=checkbox] {
   align-items: center;
 }
 
-ul {
-  list-style-type: none;
-}
-
 .comments--main {
   padding: 0;
 }
@@ -608,10 +593,6 @@ ul {
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
-}
-
-.clickable:hover {
-  cursor: pointer;
 }
 
 .primary {
@@ -762,23 +743,6 @@ select:focus + .focus {
   -webkit-background-clip: text;
 }
 
-.error__card .button {
-  border: 2px solid var(--gradient-two);
-  border-radius: 5px;
-  background-color: var(--gradient-two);
-  margin-top: 1rem;
-  color: var(--background-card);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 0 0.5rem;
-}
-
-.error__card .button:hover, .error__card .button:focus {
-  background: var(--gradient);
-  border: 2px solid transparent;
-  border-left: 2px solid var(--gradient-one);
-}
-
 .center {
   align-self: center;
 }
@@ -827,12 +791,11 @@ select:focus + .focus {
   input[type="submit"]:focus,
   input::file-selector-button:hover,
   input::file-selector-button:focus,
-  .omniauth:hover,
-  .omniauth:focus,
-  .devise_cancel button:hover,
-  .devise_cancel button:focus,
-  .request:hover,
-  .request:focus,
+  .button--wide:hover,
+  .button--wide:focus,
+  .button:hover,
+  .button:focus,
+
   .error__card .button:hover, 
   .error__card .button:focus {
     border-right: 2px solid var(--gradient-three);

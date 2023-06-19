@@ -18,11 +18,13 @@
               <% if show %>
                 <%= button_to "Delete", post_path(post, format: :html), 
                   method: :delete, class: "delete link",
-                  form: { data: { turbo_confirm: 'Are you sure?', turbo_frame: "_top" } } %>
+                  form: { data: { turbo_confirm: 'Are you sure?', turbo_frame: "_top" } }, 
+                  class: "button--link" %>
               <% else %>
                 <%= button_to "Delete", post_path(post), 
                 method: :delete, 
-                form: { data: { turbo_confirm: 'Are you sure?' } } %>
+                form: { data: { turbo_confirm: 'Are you sure?' } }, 
+                class: "button--link" %>
               <% end %>
             </div>
           <% end %>
