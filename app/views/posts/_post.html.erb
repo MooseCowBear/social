@@ -45,13 +45,13 @@
     <% end %>
 
     <div class="counts__wrapper">
-      <div class="likes">
+      <div>
         <%= turbo_frame_tag "#{post.id}_likes" do %>
           <% render partial: "likes/like", locals: { post: post } %>
         <% end %>
       </div>
 
-      <div class="likes">
+      <div>
         <%= turbo_frame_tag "#{post.id}_comment_count" do %>
           <% render partial: "comments/count", locals: { post: post } %>
         <% end %>

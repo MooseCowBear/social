@@ -1,5 +1,5 @@
 <div class="page__wrapper">
-  <h1>Post Details</h1>
+  <h1>View Post</h1>
 
   <%= render @post, show: true %>
 
@@ -10,7 +10,7 @@
 
   <%= turbo_frame_tag dom_id_for_records(@post, Comment.new) %>
   <%= turbo_frame_tag "comments" do %>
-    <ul class="comments--main">
+    <ul class="comments_list--outer">
       <%= render @post.comments.includes(:user).order(created_at: :desc) || "There are no comments yet." %>
     </ul>
   <% end %>
