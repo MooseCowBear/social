@@ -215,11 +215,6 @@ svg {
   margin-bottom: 0.2rem;
 }
 
-.owner_actions.comment {
-  margin-top: -1rem;
-  align-self: last baseline;
-}
-
 .comments_list--outer {
   padding: 0;
 }
@@ -230,10 +225,15 @@ svg {
   gap: 0.3rem;
 }
 
-.comment_main {
-  display: grid;
-  grid-template-columns: 1fr auto;
+.comment_main { 
+  display: flex;
+  flex-direction: column;
 }
+
+.comment_main > .owner_actions {
+  align-self: flex-end;
+}
+
 
 .link--reply {
   align-self: end;
