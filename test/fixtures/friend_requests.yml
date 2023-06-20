@@ -1,6 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one: 
+one:
   user: alice
   friend: bob
   status: accepted
@@ -9,3 +9,33 @@ two:
   user: bob
   friend: alice
   status: accepted
+
+three:
+  user: alice
+  friend: david
+  status: requested
+
+four:
+  user: david
+  friend: alice
+  status: pending
+
+five:
+  user: ethan
+  friend: alice
+  status: requested
+
+six: 
+  user: alice
+  friend: ethan
+  status: declined
+
+seven: 
+  user: frank
+  friend: alice
+  status: requested
+
+eight: 
+  user: alice
+  friend: frank
+  status: pending

@@ -1,2 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+alice_profile:
+  user: alice
+  username: alice's username
+  location: Boston

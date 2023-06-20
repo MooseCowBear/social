@@ -7,15 +7,21 @@
 
 alice:
   email: alice@test.com
-  password: password
-  password_confirmation: password
 
 bob:
   email: bob@test.com
-  password: password
-  password_confirmation: password
 
 charlie:
   email: charlie@test.com
-  password: password
-  password_confirmation: password
+
+david:
+  email: david@test.com
+
+ethan:
+  email: ethan@test.com
+
+frank:
+  email: frank@test.com
+
+gary:
+  email: gary@test.com

@@ -12,15 +12,21 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   has_many :friend_requests, dependent: :destroy
-  has_many :friends, -> { where(friend_requests: { status: "accepted" }) }, through: :friend_requests
-  has_many :requested_friends, -> { where(friend_requests: { status: "requested" }) }, through: :friend_requests, source: :friend
-  has_many :pending_friends, -> { where(friend_requests: { status: "pending" }) }, through: :friend_requests, source: :friend
-  has_many :declined_friends, -> { where(friend_requests: { status: "declined" }) }, through: :friend_requests, source: :friend #these are requests user has declined.
+  has_many :friends, -> { where(friend_requests: { status: "accepted" }) }, 
+    through: :friend_requests
+  has_many :requested_friends, -> { where(friend_requests: { status: "requested" }) }, 
+    through: :friend_requests, source: :friend
+  has_many :pending_friends, -> { where(friend_requests: { status: "pending" }) }, 
+    through: :friend_requests, source: :friend
+  has_many :declined_friends, -> { where(friend_requests: { status: "declined" }) }, 
+    through: :friend_requests, source: :friend #these are requests user has declined.
   has_many :potential_friends, through: :friend_requests, source: :friend
 
-  has_many :received_requests, class_name: "FriendRequest", foreign_key: "friend_id", dependent: :destroy #think i just need the destroy part...
+  has_many :received_requests, class_name: "FriendRequest", 
+    foreign_key: "friend_id", 
+    dependent: :destroy #think i just need the destroy part...
 
-  scope :all_except, ->(user) { where.not(id: (user.potential_friends + [user]).map(&:id))}
+  scope :all_except, ->(user) { where.not(id: (user.potential_friends + [user]).map(&:id)) }
 
   def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -32,7 +38,8 @@ class User < ApplicationRecord
 
   def self.search(search_params, user)
     unless search_params.empty? 
-      User.search_term(search_params[:query]).all_except(user).includes([:profile]).order(:email)
+      User.search_term(search_params[:query]).all_except(user).includes([:profile]).
+        order(:email)
     else
       User.all_except(user).includes([:profile]).order(:email)
     end
@@ -61,6 +68,8 @@ class User < ApplicationRecord
   private
 
   def self.search_term(term)
-    User.left_outer_joins(:profile).where("lower(users.email) LIKE :t OR lower(profiles.username) LIKE :t", t: "#{term.downcase}%")
+    User.left_outer_joins(:profile).
+      where("lower(users.email) LIKE :t OR lower(profiles.username) LIKE :t", 
+      t: "#{term.downcase}%")
   end
 end

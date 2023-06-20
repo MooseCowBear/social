@@ -1,16 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: first post
-  body: some content
   user: alice
+  title: first post
+  body: first post body
 
-two:
-  title: second post
-  body: some content
+two: 
   user: bob
+  title: second post
+  body: second post body
 
 three:
-  title: third post
-  body: some content
   user: charlie
+  title: third post
+  body: thired post body
