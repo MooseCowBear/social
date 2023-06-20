@@ -58,22 +58,6 @@ class User < ApplicationRecord
     likes.detect { |like| like.post_id == id }
   end
 
-  ## WILL WE ACTUALLY USE THESE??
-
-  def friends_of_friends
-    #very inefficient
-    User.joins(:friend_requests).where(:id => friend_friend_ids).where.not(id: (self.potential_friends + [self]).map(&:id))
-  end
-
-  def friend_friend_ids
-    #very inefficient
-    ids = []
-    friends.each do |friend|
-      ids += friend.friend_requests.pluck(:friend_id)
-    end
-    ids.uniq
-  end
-
   private
 
   def self.search_term(term)
