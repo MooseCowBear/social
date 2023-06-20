@@ -5,3 +5,7 @@ alice_profile:
   username: alice's username
   location: Boston
   time_zone: "International Date Line West"
+
+charlie_profile:
+  user: charlie
+  username: charles in charge

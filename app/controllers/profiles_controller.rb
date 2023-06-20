@@ -25,7 +25,7 @@ class ProfilesController < ApplicationController
 
   def update 
     if @profile.update(profile_params)
-      flash[:notice] ="Profile has been updated."
+      flash[:notice] = "Profile has been updated."
       redirect_to user_profile_path(@profile.user, @profile)
     else
       render :edit, status: :unprocessable_entity
@@ -39,12 +39,6 @@ class ProfilesController < ApplicationController
   end
 
   private 
-
-  def require_permission
-    if current_user != Profile.find(params[:id]).user
-      redirect_to root_path
-    end
-  end
 
   def profile_params
     params.require(:profile).permit(:username, :location, :birthday, :time_zone, :user_id, :image, :interests)
