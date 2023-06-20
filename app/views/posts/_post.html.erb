@@ -17,7 +17,7 @@
               <%= link_to "Edit", edit_post_path(post) %> |
               <% if show %>
                 <%= button_to "Delete", post_path(post, format: :html), 
-                  method: :delete, class: "delete link",
+                  method: :delete,
                   form: { data: { turbo_confirm: 'Are you sure?', turbo_frame: "_top" } }, 
                   class: "button--link" %>
               <% else %>

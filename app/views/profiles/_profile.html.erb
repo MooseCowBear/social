@@ -11,6 +11,6 @@
     <% end %>
   </div>
   <p>Location: <%= profile.location %></p>
-  <p>Birthday: <%= profile.birthday.strftime("%B %-d") %></p>
+  <p>Birthday: <%= profile.birthday.strftime("%B %-d") if profile.birthday %></p>
   <p>Interests: <%= profile.interests %></p>
 </div>
