@@ -4,3 +4,4 @@ alice_profile:
   user: alice
   username: alice's username
   location: Boston
+  time_zone: "International Date Line West"

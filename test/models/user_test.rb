@@ -81,4 +81,13 @@ class UserTest < ActiveSupport::TestCase
     post = posts(:two)
     assert_not @user.post_like(post.id)
   end
+
+  test "#get_time_zone returns time zone from profile if profile" do
+    assert_equal "International Date Line West", @user.get_time_zone
+  end
+
+  test "#get_time_zone returns eastern if no profile" do
+    user = users(:bob)
+    assert_equal "Eastern Time (US & Canada)", user.get_time_zone
+  end
 end
