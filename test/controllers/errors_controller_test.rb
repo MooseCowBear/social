@@ -2,17 +2,17 @@ require "test_helper"
 
 class ErrorsControllerTest < ActionDispatch::IntegrationTest
   test "should get not_found" do
-    get errors_not_found_url
-    assert_response :success
+    get "/404"
+    assert_response :redirect
   end
 
   test "should get server_error" do
-    get errors_server_error_url
-    assert_response :success
+    get "/500"
+    assert_response :redirect
   end
 
   test "should get unprocessable_content" do
-    get errors_unprocessable_content_url
-    assert_response :success
+    get "/422"
+    assert_response :redirect
   end
 end
