@@ -28,4 +28,23 @@ class CommentTest < ActiveSupport::TestCase
   test "has ancestor post" do
     assert @comment.ancestor_post
   end
+
+  test "creates comment when body present" do
+    comment = Comment.new
+    comment.user = users(:bob)
+    comment.commentable = comments(:comment_two)
+    comment.parent_post_id = 1
+    comment.body = "something"
+
+    assert comment.save
+  end
+
+  test "does not create comment when body missing" do
+    comment = Comment.new
+    comment.user = users(:bob)
+    comment.commentable = comments(:comment_two)
+    comment.parent_post_id = 1
+
+    assert_not comment.save
+  end
 end
