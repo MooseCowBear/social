@@ -1,2 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+notification_one:
+  item: one (Like)
+  user: alice
+  read: false
 
+notification_two:
+  item: comment_one (Comment)
+  user: alice
+  read: true
