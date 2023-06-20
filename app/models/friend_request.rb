@@ -12,8 +12,6 @@ class FriendRequest < ApplicationRecord
 
   def self.send_request(sender, receiver)
     transaction do
-      #create 2 rows in the table, one for each side of the relationship
-      #because of validation, should not allow multiple requests between pair
       create!(user_id: sender.id, friend_id: receiver.id, status: "requested") 
       create!(user_id: receiver.id, friend_id: sender.id, status: "pending")
     end

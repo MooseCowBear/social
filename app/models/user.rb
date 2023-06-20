@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
   has_many :received_requests, class_name: "FriendRequest", 
     foreign_key: "friend_id", 
-    dependent: :destroy #think i just need the destroy part...
+    dependent: :destroy
 
   scope :all_except, ->(user) { where.not(id: (user.potential_friends + [user]).map(&:id)) }
 
@@ -32,14 +32,13 @@ class User < ApplicationRecord
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.email = auth.info.email
         user.password = Devise.friendly_token[0, 20]
-        #user.skip_confirmation! #add if set up confirmable.
     end
   end
 
   def self.search(search_params, user)
     unless search_params.empty? 
-      User.search_term(search_params[:query]).all_except(user).includes([:profile]).
-        order(:email)
+      User.search_term(search_params[:query]).all_except(user).
+        includes([:profile]).order(:email)
     else
       User.all_except(user).includes([:profile]).order(:email)
     end
@@ -61,7 +60,7 @@ class User < ApplicationRecord
     friends.find_by(id: other.id)
   end
 
-  def post_like(id) #to avoid n + 1 db calls.
+  def post_like(id) 
     likes.detect { |like| like.post_id == id }
   end
 

@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     if @post.save
       respond_to do |format|
         format.html { redirect_to @post, notice: "Post was successfully created." }
-        format.turbo_stream { flash.now[:notice] = "Post was successfully created." } #PROBLEM - not getting @likes, @comments_count
+        format.turbo_stream { flash.now[:notice] = "Post was successfully created." } 
       end
     else
       render :new, status: :unprocessable_entity
