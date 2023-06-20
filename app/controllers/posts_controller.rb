@@ -1,15 +1,13 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy, :show]
   before_action :confirm_ownership, only: [:edit, :update, :destroy]
+  before_action :confirm_friendship, only: [:show]
 
   def index
     @posts = Post.find_posts_with_counts(current_user.id)
   end
 
   def show
-    @post = Post.find(params[:id]) #PROBLEM -- index includes a .comment_count, .like_count...
-    @likes = @post.likes.size
-    @comments_count = @post.descendants.size
   end
 
   def new
@@ -22,7 +20,7 @@ class PostsController < ApplicationController
     if @post.save
       respond_to do |format|
         format.html { redirect_to @post, notice: "Post was successfully created." }
-        format.turbo_stream { flash.now[:notice] = "Post was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Post was successfully created." } #PROBLEM - not getting @likes, @comments_count
       end
     else
       render :new, status: :unprocessable_entity
@@ -65,6 +63,13 @@ class PostsController < ApplicationController
   def confirm_ownership
     unless @post.user == current_user
       flash[:alert] = "Only the creators of a post may modify it."
+      redirect_to root_path
+    end
+  end
+
+  def confirm_friendship
+    unless @post.user.friend_with?(current_user) || @post.user == current_user
+      flash[:alert] = "You may only view friends' posts."
       redirect_to root_path
     end
   end

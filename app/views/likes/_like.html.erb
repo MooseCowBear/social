@@ -9,5 +9,6 @@
       <%= render partial: "shared/heart", locals: { liked: false } %>
     <% end %>
   <% end %>
-  <p><%= @likes || post.like_count %> likes</p>
+
+  <p><%= get_likes_count(post) %> likes</p>
 </div>

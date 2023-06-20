@@ -1,4 +1,4 @@
 <div class="count_container">
-  <%= render partial: "shared/bubble", locals: { commented: @comments_count || post.comment_count } %>
-  <p class="space"><%= @comments_count || post.comment_count %> comments</p>
+  <%= render partial: "shared/bubble", locals: { commented: get_comments_count(post) } %>
+  <p class="space"><%= get_comments_count(post) %> comments</p>
 </div>
