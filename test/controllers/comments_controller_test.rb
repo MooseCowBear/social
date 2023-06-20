@@ -21,7 +21,10 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create post comment" do
     assert_difference("Comment.count", 1) do
-      post post_comments_path(@post), params: { post_id: @post.id, comment: { body: "some content", parent_post_id: @post.id } }
+      post post_comments_path(@post), 
+        params: { 
+          post_id: @post.id, 
+          comment: { body: "some content", parent_post_id: @post.id } }
     end
     assert_response :redirect
     follow_redirect!
@@ -29,7 +32,9 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update post comment" do
-    patch post_comment_path(post_id: @post.id, id: comments(:comment_one).id), params: { post_id: @post.id, comment: { body: "some new content", parent_post_id: @post.id } }
+    patch post_comment_path(post_id: @post.id, id: comments(:comment_one).id), 
+      params: { post_id: @post.id, 
+      comment: { body: "some new content", parent_post_id: @post.id } }
     assert_response :redirect
     follow_redirect!
     assert_select "p", "some new content"
@@ -55,7 +60,9 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create comment comment" do
     assert_difference("Comment.count", 1) do
-      post comment_comments_path(comment_id: comments(:comment_one)), params: { comment_id: comments(:comment_one), comment: { body: "some content", parent_post_id: @post.id } }
+      post comment_comments_path(comment_id: comments(:comment_one)), 
+        params: { comment_id: comments(:comment_one), 
+        comment: { body: "some content", parent_post_id: @post.id } }
     end
     assert_response :redirect
     follow_redirect!
@@ -63,7 +70,9 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update comment comment" do
-    patch comment_comment_path(comment_id: comments(:comment_one).id, id: @comment), params: { comment_id: comments(:comment_one).id, comment: { body: "some new content", parent_post_id: @post.id } }
+    patch comment_comment_path(comment_id: comments(:comment_one).id, id: @comment), 
+      params: { comment_id: comments(:comment_one).id, 
+      comment: { body: "some new content", parent_post_id: @post.id } }
     assert_response :redirect
     follow_redirect!
     assert_select "p", "some new content"

@@ -1,10 +1,6 @@
 require "test_helper"
 
 class CommentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-
   setup do
     @comment = Comment.last
   end

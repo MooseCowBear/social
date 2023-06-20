@@ -1,7 +1,6 @@
 require "test_helper"
 
 class LikeTest < ActiveSupport::TestCase
-  
   setup do 
     @like = Like.last
   end

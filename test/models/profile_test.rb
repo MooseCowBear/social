@@ -1,10 +1,6 @@
 require "test_helper"
 
 class ProfileTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-
   setup do
     @user = users(:frank)
   end

@@ -21,14 +21,16 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     user = users(:bob)
     sign_in user
     assert_difference("Profile.count", 1) do 
-      post profiles_path, params: { profile: { username: "bobisthebest", user_id: user.id } }
+      post profiles_path, 
+        params: { profile: { username: "bobisthebest", user_id: user.id } }
     end
     assert_response :redirect
     follow_redirect!
   end
 
   test "should allow profile owner to update" do
-    patch profile_path(id: profiles(:alice_profile)), params: { profile: { username: "alice's new username"} }
+    patch profile_path(id: profiles(:alice_profile)), 
+      params: { profile: { username: "alice's new username"} }
     assert_response :redirect
     follow_redirect!
     assert_equal "Profile has been updated.", flash[:notice]
@@ -43,7 +45,8 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not allow user to edit profile not belonging to them" do
-    patch profile_path(id: profiles(:charlie_profile)), params: { profile: { username: "butthead"} }
+    patch profile_path(id: profiles(:charlie_profile)), 
+      params: { profile: { username: "butthead"} }
     assert_response :redirect
     follow_redirect!
     assert_equal "Only profile owners may edit profiles.", flash[:notice]

@@ -46,7 +46,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create user post" do
     assert_difference("Post.count") do
-      post posts_path, params: { post: { title: "new post title", body: "new post body", user_id: users(:alice).id } }
+      post posts_path, 
+        params: { post: { title: "new post title", 
+          body: "new post body", user_id: users(:alice).id } }
     end
     assert_response :redirect
     follow_redirect!
@@ -54,14 +56,16 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update user's post" do
-    patch post_path(1), params: { post: { title: "this is the new title", body: "this is the new post body", user_id: users(:alice).id } }
+    patch post_path(1), params: { post: { title: "this is the new title", 
+      body: "this is the new post body", user_id: users(:alice).id } }
     assert_response :redirect
     follow_redirect!
     assert_select "h2", "this is the new title"
   end
 
   test "should not update post not owned by user" do
-    patch post_path(2), params: { post: { title: "updated title", body: "updated body", user_id: users(:bob).id } }
+    patch post_path(2), params: { post: { title: "updated title", 
+      body: "updated body", user_id: users(:bob).id } }
     assert_response :redirect
     follow_redirect!
     assert_equal "Only the creators of a post may modify it.", flash[:alert]
