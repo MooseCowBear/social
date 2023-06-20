@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     elsif @user.friend_with?(current_user)
       @posts = Post.find_posts_with_counts(@user.id)
     else
-      redirect_to root_path, notice: "You may only view page's of friends."
+      redirect_to root_path, notice: "You may only view pages of friends."
     end
   end
 

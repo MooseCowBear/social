@@ -5,3 +5,17 @@
 # below each fixture, per the syntax in the comments below
 #
 
+alice:
+  email: alice@test.com
+  password: password
+  password_confirmation: password
+
+bob:
+  email: bob@test.com
+  password: password
+  password_confirmation: password
+
+charlie:
+  email: charlie@test.com
+  password: password
+  password_confirmation: password
