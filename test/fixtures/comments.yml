@@ -1,2 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+comment_one:
+  body: nothing
+  user: alice
+  commentable_id: 1
+  commentable_type: Post
+  parent_post_id: 1
+
+comment_two:
+  body: again nothing
+  user: bob
+  commentable: comment_one (Comment)
+  parent_post_id: 1

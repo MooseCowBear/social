@@ -2,4 +2,4 @@
 
 one:
   user: alice
-  post: one
+  post_id: 1
