@@ -18,10 +18,13 @@ class Comment < ApplicationRecord
     #notify the author of a post that there is a new comment
     #and if that comment is a reply to another comment, notify
     #that comment's author too. 
+    res = []
     post_author_id = Post.find_by(id: parent_post_id).user.id
-    res = [post_author_id]
+    res << post_author_id unless post_author_id == user_id
+
     if commentable_type == "Comment"
-      res << Comment.find_by(id: commentable_id).user.id
+      comment_id = Comment.find_by(id: commentable_id).user.id
+      res << comment_id unless comment.id == user_id
     end
     res.uniq
   end

@@ -4,7 +4,7 @@ class Profile < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :username, uniqueness: { case_sensitive: false }, length: { maximum: 50 }
+  validates :username, uniqueness: { case_sensitive: false }, length: { maximum: 20 }
   validate :acceptable_image
 
   #for "friend requests, posts, etc."

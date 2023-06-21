@@ -5,10 +5,10 @@ class ProfileTest < ActiveSupport::TestCase
     @user = users(:frank)
   end
   
-  test "does not create profile if username is more than 50 chars" do
+  test "does not create profile if username is more than 20 chars" do
     profile = Profile.new
     profile.user = @user
-    profile.username = "a" * 51
+    profile.username = "a" * 21
 
     assert_not profile.save
   end
@@ -24,7 +24,7 @@ class ProfileTest < ActiveSupport::TestCase
   test "creates profile if username unique" do
     profile = Profile.new
     profile.user = @user
-    profile.username = "this username is unique"
+    profile.username = "unique username"
 
     assert profile.save
   end

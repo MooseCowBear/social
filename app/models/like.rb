@@ -9,6 +9,8 @@ class Like < ApplicationRecord
   validates_uniqueness_of :user_id, scope: [:post_id]
 
   def recipients
-    [post.user_id]
+    res = [] 
+    res << post.user_id unless user_id == post.user_id
+    res
   end
 end
