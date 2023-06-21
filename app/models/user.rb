@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_many :pending_friends, -> { where(friend_requests: { status: "pending" }) }, 
     through: :friend_requests, source: :friend
   has_many :declined_friends, -> { where(friend_requests: { status: "declined" }) }, 
-    through: :friend_requests, source: :friend #these are requests user has declined.
+    through: :friend_requests, source: :friend 
   has_many :potential_friends, through: :friend_requests, source: :friend
 
   has_many :received_requests, class_name: "FriendRequest", 
