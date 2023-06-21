@@ -30,7 +30,7 @@
     <%= turbo_frame_tag dom_id_for_records(comment, Comment.new) %>
     <ul>
       <%= turbo_frame_tag "comment_#{comment.id}_comments" do %>
-        <%= render comment.comments.includes(:user).order(created_at: :asc) %>
+        <%= render comment.comments.includes(user: [:profile]).order(created_at: :asc) %>
       <% end %>
     </ul>
   </li>

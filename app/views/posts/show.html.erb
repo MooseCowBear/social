@@ -11,8 +11,10 @@
   <%= turbo_frame_tag dom_id_for_records(@post, Comment.new) %>
     <ul class="comments_list--outer">
       <%= turbo_frame_tag "comments" do %>
-        <%= render @post.comments.includes(:user).order(created_at: :desc) || "There are no comments yet." %>
+        <%= render @post.comments.includes(user: [:profile]).order(created_at: :desc) || "There are no comments yet." %>
       <% end %>
     </ul>
 </div>
+
+<%# includes(item: [{ user: [:profile] }, :post])  %>
 
