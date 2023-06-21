@@ -24,18 +24,9 @@ class Post < ApplicationRecord
       with_attached_image.
       left_joins(:likes).
       joins("LEFT JOIN comments ON posts.id = comments.parent_post_id").
-      select("posts.*, COUNT(likes.id) AS like_count, COUNT(comments.id) AS comment_count").
+      select("posts.*, COUNT(DISTINCT likes.id) AS like_count, COUNT(DISTINCT comments.id) AS comment_count").
       group("posts.id")
   end
-
-  #do we still get the benefit of above??? NO
-  #def comment_count 
-    #descendants.size
-  #end
-
-  #def like_count
-    #likes.size 
-  #end
 
   def resized_image
     image.variant(resize_to_limit: [300, 300]).processed

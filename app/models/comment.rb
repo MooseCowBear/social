@@ -8,7 +8,7 @@ class Comment < ApplicationRecord
   has_many :notifications, as: :item, dependent: :destroy
 
   validates_presence_of :body
-  validates :body, length: { maximum: 500 } #does this seem reasonable?
+  validates :body, length: { maximum: 500 } 
 
   def ancestor_post
     Post.find_by(id: parent_post_id)

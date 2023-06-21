@@ -11,7 +11,7 @@ class Notification < ApplicationRecord
   end
   
   after_update_commit do 
-    broadcast_update_to "broadcast_to_user_#{self.user_id}", 
+    broadcast_replace_to "broadcast_to_user_#{self.user_id}", 
       target: self
   end
   
