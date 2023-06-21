@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:id]).include([:comments]).include([:notifications])
     @post.destroy
 
     respond_to do |format|
