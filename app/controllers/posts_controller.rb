@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id]).include([:comments]).include([:notifications])
+    @post = Post.find(params[:id]) #complains about not having includes but also includes gives an error
     @post.destroy
 
     respond_to do |format|
