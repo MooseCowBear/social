@@ -10,7 +10,7 @@
           <%= display_date(post.created_at) %>
         </div>
         <div class="header line">
-          <p><%= display_name(post.user) %><p>
+          <p><%= display_name(post.user) %></p>
 
           <% if post.user == current_user %>
             <div class="owner_actions">
