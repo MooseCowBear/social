@@ -768,12 +768,31 @@ select:focus + .focus {
     flex-direction: column;
     align-items: start;
   }
+
   .posts__wrapper{
     max-height: 1000px;
     overflow: auto;
   }
+
   .card {
     max-width: 98vw;
+  }
+
+  .card.header div:not(.owner_actions) {
+    flex-direction: column;
+    align-items: start;
+  }
+  
+  .card.header.comment div {
+    gap: 0.5rem;
+  }
+
+  .card.header.post .owner_actions {
+    align-self: flex-end;
+  }
+
+  ul {
+    padding-left: 8px;
   }
 }
 
