@@ -43,4 +43,52 @@ class CommentTest < ActiveSupport::TestCase
 
     assert_not comment.save
   end
+
+  test "when a reply is made, original comment author is in notification recipient list" do
+    comment = Comment.new
+    comment.user = users(:frank)
+    comment.commentable = comments(:comment_two)
+    comment.parent_post_id = 1
+    comment.body = "something"
+    comment.save!
+
+    assert comment.recipients.include?(users(:bob).id)
+  end
+
+  test "except when that user is repying to own comment" do
+    comment = Comment.new
+    comment.user = users(:bob)
+    comment.commentable = comments(:comment_two)
+    comment.parent_post_id = 1
+    comment.body = "something"
+    comment.save!
+
+    assert_not comment.recipients.include?(users(:bob).id)
+  end
+
+  test "post author is in notification recipient list when someone comments on their post" do
+    comment = Comment.new
+    comment.user = users(:frank)
+    comment.commentable = comments(:comment_two)
+    comment.parent_post_id = 1
+    comment.body = "something"
+    comment.save!
+
+    assert comment.recipients.include?(users(:alice).id)
+  end
+
+  test "except when author is also commenter" do
+    comment = Comment.new
+    comment.user = users(:alice)
+    comment.commentable = comments(:comment_two)
+    comment.parent_post_id = 1
+    comment.body = "something"
+    comment.save!
+
+    assert_not comment.recipients.include?(users(:alice).id)
+  end
+
+  test "returns correct ancestor post" do
+    assert_equal @comment.ancestor_post, Post.find(1)
+  end
 end

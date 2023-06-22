@@ -40,7 +40,7 @@ alice = User.find_by(email: "alice@fake.com")
 
 profile = Profile.new(user_id: alice.id, username: "AliceInWonderLand", location: "Through the Looking Glass", interests: "books, cats, large mushrooms, growing, shrinking", birthday: 20.years.ago)
 profile.image.attach(io: File.open('app/assets/images/emma_profile.jpeg'), filename: 'emma_profile.jpeg', content_type: 'image/jpeg')
-profile.save
+profile.save!
 
 #want some established friends, not just requested ones...
 
@@ -89,48 +89,48 @@ friends.each_with_index do |f, i|
   p = Post.new(user_id: friend.id, title: titles[i], body: content[0..random_end])
   rand_time = (2..10).to_a.sample
   p.created_at = now - rand_time
-  p.save
+  p.save!
 end
 
 post1 = Post.new(user_id: alice.id, title: "First Post", body: content)
 post1.created_at = now - 4
-post1.save
+post1.save!
 
 post2 = Post.new(user_id: alice.id, title: "Another Post", body: content[0..200])
 post2.creates_at = now - 3
-post2.save
+post2.save!
 
 post3 = Post.new(user_id: alice.id, title: "Ready to go", body: content[0..400])
 post3.created_at = now - 2
 post3.image.attach(io: File.open('app/assets/images/leaf.jpeg'), filename: 'leaf.jpeg', content_type: 'image/jpeg')
-post3.save
+post3.save!
 
 post4 = Post.new(user_id: alice.id, title: "Proudest Moment Ever")
 post4.created_at = now - 1
 post4.image.attach(io: File.open('app/assets/images/branch.jpeg'), filename: 'branch.jpg', content_type: 'image/jpeg')
-post4.save
+post4.save!
 
 #want comments for posts, and likes
 comments = ["So cool.", "Yay", "I think not.", "Maybe another day", "first"]
 posts = Post.all
 posts.each do |p|
   rand = (0..4).to_a.sample(3)
-  c = p.comments.new(body: comments[rand[0]], user_id: User.find_by(email: "alice@fake.com").id)
-  cc = p.comments.new(body: comments(rand[1]), user_id: User.find_by(email: "harry@fake.com").id)
-  ccc = cc.comments.new(body: comments[rand[2]], user_id: User.find_by(email: "lily@fake.com").id)
+  a = p.comments.new(body: comments[rand[0]], user_id: User.find_by(email: "alice@fake.com").id)
+  b = p.comments.new(body: comments(rand[1]), user_id: User.find_by(email: "harry@fake.com").id)
+  c = cc.comments.new(body: comments[rand[2]], user_id: User.find_by(email: "lily@fake.com").id)
   #pick created at times
-  c.created_at = p.created_at 
-  cc.created_at = p.created_at + 1
-  ccc.created_at = cc.created_at + 1
-  c.save
-  cc.save
-  ccc.save 
+  a.created_at = p.created_at 
+  b.created_at = p.created_at + 1
+  c.created_at = cc.created_at + 1
+  a.save!
+  b.save!
+  c.save!
 
   like_count = (0..3).to_sample
   like_count.times do |l|
-    p.likes.create(user_id: User.find_by(email: emails[l]).id)
+    p.likes.create!(user_id: User.find_by(email: emails[l]).id)
     if l % 2 == 0
-      p.likes.create(user_id: alice.id)
+      p.likes.create!(user_id: alice.id)
     end
   end
 end

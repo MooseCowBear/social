@@ -24,8 +24,8 @@ class Comment < ApplicationRecord
 
     if commentable_type == "Comment"
       comment_id = Comment.find_by(id: commentable_id).user.id
-      res << comment_id unless comment.id == user_id
+      res << comment_id unless comment_id == user_id
     end
     res.uniq
-  end
+  end 
 end
