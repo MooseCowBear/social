@@ -17,8 +17,10 @@
     <% @pending.each do |f| %>
       <div class="row card">
         <%= display_name(f) %>
-        <%= button_to "Accept", accept_friend_requests_path(friend: f), class: "button" %>
-        <%= button_to "Decline", decline_friend_requests_path(friend: f), class: "button" %>
+        <div class="inline">
+          <%= button_to "Accept", accept_friend_requests_path(friend: f), class: "button" %>
+          <%= button_to "Decline", decline_friend_requests_path(friend: f), class: "button" %>
+        </div>
       </div>
     <% end %>
     <%= "No outstanding requests." unless @pending.any? %>
