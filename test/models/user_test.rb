@@ -58,7 +58,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "has correct number of non potential friends returned in all except scope" do
-    assert_equal 2, User.all_except(@user).size
+    assert_equal 3, User.all_except(@user).size
   end
 
   test "#friend_with? returns false when user is not friends with other" do
@@ -89,4 +89,10 @@ class UserTest < ActiveSupport::TestCase
     user = users(:bob)
     assert_equal "Eastern Time (US & Canada)", user.get_time_zone
   end
-end
+
+  test "search returns correct users" do 
+    res = User.search({ query: "da" }, @user)
+    assert_equal res.length, 1
+    assert res.include?(users(:damian))
+  end
+end 
