@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-
 User.destroy_all
 FriendRequest.destroy_all
 Profile.destroy_all
@@ -19,7 +11,7 @@ names = ["alice", "harry", "martin", "malek", "gloria",
   "jennifer", "kevin", "clive", "owen", "robbie", "amelia", "stacy",
   "alastair", "mackenzie", "freida", "pierre", "george", "frances",
   "betty", "olivia", "damian", "susan", "hugh", "lauren", "max", "maxine",
-  "harriet", "lily"] #61
+  "harriet", "lily"] 
 
 emails = names.map { |name| name + "@fake.com" }
 
@@ -43,7 +35,6 @@ profile.image.attach(io: File.open('app/assets/images/emma_profile.jpeg'), filen
 profile.save!
 
 #want some established friends, not just requested ones...
-
 friends = ["harry@fake.com", "martin@fake.com", "malek@fake.com", "gloria@fake.com", "lily@fake.com", "pierre@fake.com"]
 
 friends.each do |f|
@@ -118,7 +109,6 @@ posts.each do |p|
   a = p.comments.new(body: comments[rand[0]], user_id: User.find_by(email: "alice@fake.com").id)
   b = p.comments.new(body: comments(rand[1]), user_id: User.find_by(email: "harry@fake.com").id)
   c = cc.comments.new(body: comments[rand[2]], user_id: User.find_by(email: "lily@fake.com").id)
-  #pick created at times
   a.created_at = p.created_at 
   b.created_at = p.created_at + 1
   c.created_at = cc.created_at + 1

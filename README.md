@@ -8,6 +8,7 @@ It is a social media web app inspired by Facebook.
 
 - Authorization with the Devise Gem.
 - Sign in with Google via Omniauth
+- Custom error pages
 - A user can send friend requests to other users.
 - A user must accept a friend request in order to become friends.
 - A user can create posts, and posts may consist of 1. text, 2. an image upload, or 3. both text and an image upload.
