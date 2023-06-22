@@ -35,5 +35,28 @@ class LikeTest < ActiveSupport::TestCase
     like.user = user
 
     assert like.save
+  end 
+
+  test "recipients consist of post author of liked post" do
+    post = Post.find(1)
+    user = users(:bob)
+    like = Like.new
+    like.post = post
+    like.user = user
+    like.save
+
+    assert_equal like.recipients.length, 1
+    assert like.recipients.include?(users(:alice).id)
+  end
+
+  test "except when someone likes their own post. then no notification recipients" do
+    post = Post.find(2)
+    user = users(:bob)
+    like = Like.new
+    like.post = post
+    like.user = user
+    like.save
+
+    assert_equal like.recipients.length, 0
   end
 end
