@@ -13,7 +13,7 @@ It is a social media web app inspired by Facebook.
 - A user must accept a friend request in order to become friends.
 - A user can create posts, and posts may consist of 1. text, 2. an image upload, or 3. both text and an image upload.
 - A user can comment on posts.
-- A user can reply to a comment (currently nested comments are limited to a depth of 2 through validation, but could in principle be infinite)
+- A user can reply to a comment (currently nested comments are limited to a depth of 2, but could in principle be infinite)
 - A user may like/unlike a post.
 - A user's homepage displays the posts from their friends in reverse chronological order of creation. 
 - A user may create a profile. 
