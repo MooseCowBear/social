@@ -11,10 +11,12 @@
   <%= turbo_frame_tag dom_id_for_records(@post, Comment.new) %>
     <ul class="comments_list--outer">
       <%= turbo_frame_tag "comments" do %>
-        <%= render @post.comments.includes(user: [:profile]).order(created_at: :desc) || "There are no comments yet." %>
 
-        <%#= render partial: "comments/comment", collection: @post.comments.includes(user: [:profile]).order(created_at: :desc), locals: { level: 1 } %>
+        <%= render @comments %>
+        <% unless @comments.any? %>
+          <p>There are no comments yet.</p>
+        <% end %>
       <% end %>
     </ul>
 </div>
-
+ 

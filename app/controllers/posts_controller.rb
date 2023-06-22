@@ -8,6 +8,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    # trying to eager load comments - which only does a single level...
+    @comments = @post.comments.includes(user: [:profile], comments: { user: [:profile] })
   end
 
   def new

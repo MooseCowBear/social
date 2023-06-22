@@ -9,6 +9,9 @@ class Comment < ApplicationRecord
 
   validates_presence_of :body
   validates :body, length: { maximum: 500 } 
+  validates :level, numericality: { less_than: 3 }
+
+  default_scope { order(created_at: :desc) } 
 
   def ancestor_post
     Post.find_by(id: parent_post_id)

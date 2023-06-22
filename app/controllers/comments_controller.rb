@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
   def create
     @comment =  @commentable.comments.new(comment_params)
     @comment.user = current_user
+    @comment.level = get_level
     @post = Post.find(@comment.parent_post_id)
 
     if @comment.save
@@ -65,6 +66,15 @@ class CommentsController < ApplicationController
       @commentable = Comment.find_by(id: params[:comment_id]) 
     elsif params[:post_id]
       @commentable = Post.find_by(id: params[:post_id].to_i)
+    end
+  end
+
+  def get_level
+    #post comments have level one
+    if params[:comment_id]
+      @commentable.level + 1
+    else
+      1
     end
   end
 end
