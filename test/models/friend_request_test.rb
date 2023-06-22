@@ -40,6 +40,26 @@ class FriendRequestTest < ActiveSupport::TestCase
     assert_not res
   end 
 
+  test "can decline a pending request" do
+    friend = users(:david)
+    FriendRequest.decline_request(@user, friend)
+    assert_equal friend_requests(:four).status, "declined"
+  end
+
+  test "can accept a pending request" do
+    friend = users(:david)
+    FriendRequest.accept_request(@user, friend)
+    assert_equal friend_requests(:four).status, "accepted"
+    assert_equal friend_requests(:three).status, "accepted"
+  end
+
+  test "can unfriend" do
+    friend = users(:bob)
+    assert_difference("FriendRequest.count", -2) do
+      FriendRequest.unfriend(@user, friend)
+    end
+  end
+
   test "recipients list of friend request consists of receiver of request" do
     friend = users(:charlie)
     request = FriendRequest.send_request(@user, friend)
