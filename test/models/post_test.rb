@@ -63,6 +63,17 @@ class PostTest < ActiveSupport::TestCase
     new_post.image = fixture_file_upload("branch.jpeg", "image/jpeg")
 
     assert new_post.save
+  end 
+
+  test "user friends are in notifications recipients list when new post is created" do
+    new_post = Post.new
+    new_post.title = "title"
+    new_post.body = "stuff"
+    new_post.user = users(:alice)
+    new_post.save!
+
+    assert_equal new_post.recipients.length, 1
+    assert new_post.recipients.include?(users(:bob).id)
   end
 
   def after_teardown
