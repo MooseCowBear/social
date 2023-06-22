@@ -302,7 +302,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(10px, 5vw, 2rem);
+  padding: 0 clamp(10px, 5vw, 2rem);
 }
 
 .flash_and_greeting {
@@ -352,6 +352,8 @@ input[type="submit"],
   letter-spacing: 2px;
   font-size: 1rem;
   outline: none;
+  padding: 0 0.5rem;
+  text-align: center;
 }
 
 input[type="submit"]:hover, 
@@ -478,9 +480,9 @@ input[type=checkbox] {
   min-width: 280px;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto 1fr;
   gap: 1rem;
-  max-height: 90vh;
+  
 
   position: -webkit-sticky;
   position: sticky;
@@ -516,6 +518,7 @@ input[type=checkbox] {
   flex-direction: column;
   justify-content: flex-start;
   gap: 1rem;
+  width: 100%;
 }
 
 .profile_show__wrapper {
@@ -698,6 +701,7 @@ select:focus + .focus {
   border-radius: var(--radius);
   padding: 0.5rem 1rem;
   border: 2px solid rgba(7, 7, 7, 0.12);
+  height: 40px;
 }
 
 .magnify:hover, .magnify:focus {

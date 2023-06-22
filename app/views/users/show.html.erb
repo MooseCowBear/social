@@ -42,6 +42,10 @@
             <%#= link_to display_name(friend), user_path(friend) %>
             <%= render partial: "users/user", locals: { user: friend, request: false } %>
           <% end %>
+          <% unless @friends.any? %>
+            <p>You have no friends yet.</p>
+            <%= link_to "Find Some Friends!", users_path, class: "button" %>
+          <% end %>
         </div>
       </div>
 
