@@ -49,7 +49,11 @@ class FriendRequest < ApplicationRecord
   end
 
   def recipients
-    [friend_id]
+    if status == "pending"
+      [user_id]
+    else 
+      []
+    end
   end
 
   private

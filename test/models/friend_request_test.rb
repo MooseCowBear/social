@@ -38,5 +38,12 @@ class FriendRequestTest < ActiveSupport::TestCase
     friend = users(:gary)
     res = FriendRequest.unfriend(@user, friend)
     assert_not res
+  end 
+
+  test "recipients list of friend request consists of receiver of request" do
+    friend = users(:charlie)
+    request = FriendRequest.send_request(@user, friend)
+    assert_equal request.recipients.length, 1
+    assert request.recipients.include?(friend.id)
   end
 end
