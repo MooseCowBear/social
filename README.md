@@ -6,22 +6,52 @@ It is a social media web app inspired by Facebook.
 
 ## Features
 
-- Authorization with the Devise Gem.
-- Sign in with Google via Omniauth.
-- Custom error pages.
-- A user can send friend requests to other users.
-- A user must accept a friend request in order to become friends.
-- A user can create posts, and posts may consist of 1. text, 2. an image upload, or 3. both text and an image upload.
-- A user can comment on posts.
-- A user can reply to a comment (currently nested comments are limited to a depth of 2, but could in principle be infinite)
-- A user may like/unlike a post.
-- A user's homepage displays the posts from their friends in reverse chronological order of creation. 
-- A user may create a profile. 
-- A user may upload an avatar. 
-- Notifications are sent whenever a friend publishes a new post, someone comments on a user's post, someone replies to user's comment, user has received a friend request. New notificaiton are broadcasted and so appear in real time. 
-- A user may search for other users. 
-- Stimulus controller actions to open and close the navigation menu, toggle visibility of declined friend requests.
-- Light and dark modes
+- Log in / out
+  - Authorization with the Devise Gem
+  - Sign in with Google via Omniauth
+
+- Profile
+  - A user may create a profile
+  - and an avatar
+  - All profile fields are optional
+  - If user chooses a time zone, dates/times will be displayed in that time zone. Otherwise Eastern Standard.
+
+- Posts
+  - A user can create posts consisting of text, an image, or both
+  - New and edit forms for posts appear embedded with turbostreams
+
+- Comments
+  - A user may comment on a post
+  - or on another comment
+  - Currently nested comments are limited to a depth of 2, but could in principle be infinite
+  - New and edit forms for comments appear embedded with turbostreams
+
+- Likes
+  - A user may like/unlike a post (counts of which are also displayed with turbostreams) 
+
+- Friends/Friend Requests
+  - A user can send (and rescind) friend requests to other users 
+  - A user must accept a friend request in order to become friends
+
+- Notifications 
+  - are sent whenever:
+    - a friend publishes a new post
+    - someone comments on a user's post 
+    - someone replies to user's comment
+    - user has received a friend request 
+  - New notifications are broadcasted and so appear in real time
+
+- Search
+  - A user may search for other users 
+  - search is performed on both email and username
+
+- Unit and controller tests
+
+- Miscellaneous
+  - Stimulus controller actions to open and close the navigation menu, and toggle the visibility of declined friend requests
+  - Custom error pages
+  - Light and dark modes
+  - Mobile layout
 
 ## The Database
 
@@ -62,3 +92,8 @@ Friend Request index page (dark mode):
 Error page (dark mode):
 
 ![alt text](readme_resources/404.png "404 error page")
+
+### Built with
+
+- Rails 7.0.5
+- Ruby 3.1.2
