@@ -5,13 +5,14 @@
 
   <div class="comments header">
     <h2>Comments</h2>
-    <%= link_to "add a comment", new_post_comment_path(post_id: @post, parent_post_id: @post), data: { turbo_frame: dom_id_for_records(@post, Comment.new) } %>
+    <%= link_to "add a comment", 
+        new_post_comment_path(post_id: @post, parent_post_id: @post), 
+        data: { turbo_frame: dom_id_for_records(@post, Comment.new) } %>
   </div>
 
   <%= turbo_frame_tag dom_id_for_records(@post, Comment.new) %>
     <ul class="comments_list--outer">
       <%= turbo_frame_tag "comments" do %>
-
         <%= render @comments %>
         <% unless @comments.any? %>
           <p>There are no comments yet.</p>

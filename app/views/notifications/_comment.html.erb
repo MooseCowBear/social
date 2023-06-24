@@ -1,9 +1,13 @@
 <% if notification.user == notification.item.ancestor_post.user %>
   <%= link_to post_path(notification.item.ancestor_post) do %>
-    <span><%= display_name(notification.item.user) %> has commented on "<%= notification.item.ancestor_post.title %>".</span>
+    <span>
+      <%= display_name(notification.item.user) %> has commented on "<%= notification.item.ancestor_post.title %>".
+    </span>
   <% end %>
 <% else %>
   <%= link_to post_path(notification.item.ancestor_post) do %>
-    <span><%= display_name(notification.item.user) %> has responded to your comment.</span>
+    <span>
+      <%= display_name(notification.item.user) %> has responded to your comment.
+    </span>
   <% end %>
 <% end %>

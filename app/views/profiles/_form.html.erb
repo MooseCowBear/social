@@ -13,7 +13,12 @@
   <div class="form-field">
     <%= f.label :birthday, "Birthday" %>
     <div class="datetime">
-      <%= f.date_select :birthday, { selected: 18.year.ago, order: [:month, :day, :year], start_year: Date.current.year - 100, end_year: Date.current.year - 13, class:"datetime_select" } %>
+      <%= f.date_select :birthday, 
+          { selected: 18.year.ago, 
+            order: [:month, :day, :year], 
+            start_year: Date.current.year - 100, 
+            end_year: Date.current.year - 13, 
+            class:"datetime_select" } %>
     </div>
   </div>
 

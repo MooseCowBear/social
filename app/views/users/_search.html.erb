@@ -3,5 +3,8 @@
     <%= f.label :query, "Find people:" %>
     <%= f.text_field :query, value: params[:query] %>
   </div>
-  <%= f.submit "Search", :type => :image, :src => image_path("magnify.svg"), :class => "magnify" %>
+  <%= f.submit "Search", 
+      type: :image, 
+      src: image_path("magnify.svg"), 
+      class: "magnify" %>
 <% end %>

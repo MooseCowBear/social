@@ -37,7 +37,10 @@
 
         <% if user_signed_in? %>
           <div class="greeting">
-            <h2><span class="lowercase">Hello, </span><%= display_name(current_user) %></h2>
+            <h2>
+              <span class="lowercase">Hello, </span>
+              <%= display_name(current_user) %>
+            </h2>
             <div class="notification__wrapper">
               <div class="notification__header">
                 <h3><%= link_to "Notifications", notifications_path %></h3>

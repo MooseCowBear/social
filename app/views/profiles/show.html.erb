@@ -1,8 +1,6 @@
 <div class="wrapper">
   <h1>About Me</h1>
-
   <%= render @profile %>
-
   <%= link_to "Edit", edit_profile_path(@profile) if @profile.user == current_user %>
 </div>
 

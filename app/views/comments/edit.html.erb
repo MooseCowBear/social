@@ -1,5 +1,6 @@
 <h1>Edit Comment</h1>
 
 <%= turbo_frame_tag "comment_#{@comment.id}" do %>
-  <%= render partial: "comments/form", locals: { comment: @comment, commentable: @commentable, post: @post } %>
+  <%= render partial: "comments/form", 
+      locals: { comment: @comment, commentable: @commentable, post: @post } %>
 <% end %>
