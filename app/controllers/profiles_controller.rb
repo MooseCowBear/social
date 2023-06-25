@@ -1,6 +1,9 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, except: [:create, :new]
-  before_action :check_ownership, except: [:create, :new]
+
+  before_action only: [:edit, :update, :destroy] do
+    confirm_ownership(@profile, "Only profile owners may edit profiles.")
+  end
 
   def show
   end
@@ -12,6 +15,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     @profile.user = current_user
+
     if @profile.save
       flash[:notice] = "Profile has been created."
       redirect_to user_profile_path(@profile.user, @profile)

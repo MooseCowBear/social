@@ -3,6 +3,11 @@ class CommentsController < ApplicationController
   include CommentsHelper
 
   before_action :set_commentable
+  before_action :set_comment, only: [:edit, :update, :destroy]
+
+  before_action only: [:edit, :update, :destroy] do
+    confirm_ownership(@comment, "Only the creator of a comment may modify it.")
+  end
 
   def new
     @comment = Comment.new
@@ -26,12 +31,10 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment = Comment.find(params[:id])
     @post = Post.find(@comment.parent_post_id)
   end
 
   def update
-    @comment = Comment.find(params[:id])
     @post = Post.find(@comment.parent_post_id)
 
     if @comment.update(comment_params)
@@ -45,7 +48,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
     @post = Post.find(@comment.parent_post_id)
     @comment.destroy
 
@@ -67,6 +69,10 @@ class CommentsController < ApplicationController
     elsif params[:post_id]
       @commentable = Post.find_by(id: params[:post_id].to_i)
     end
+  end
+
+  def set_comment 
+    @comment = Comment.find(params[:id])
   end
 
   def get_level

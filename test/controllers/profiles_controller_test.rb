@@ -46,10 +46,10 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
 
   test "should not allow user to edit profile not belonging to them" do
     patch profile_path(id: profiles(:charlie_profile)), 
-      params: { profile: { username: "butthead"} }
+      params: { profile: { username: "butthead" } }
     assert_response :redirect
     follow_redirect!
-    assert_equal "Only profile owners may edit profiles.", flash[:notice]
+    assert_equal "Only profile owners may edit profiles.", flash[:alert]
   end
 
   test "should not allow user to delete profile not belonging to them" do
@@ -58,6 +58,6 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     end
     assert_response :redirect
     follow_redirect!
-    assert_equal "Only profile owners may edit profiles.", flash[:notice]
+    assert_equal "Only profile owners may edit profiles.", flash[:alert]
   end
 end

@@ -1,7 +1,10 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :destroy, :show]
-  before_action :confirm_ownership, only: [:edit, :update, :destroy]
   before_action :confirm_friendship, only: [:show]
+
+  before_action only: [:edit, :update, :destroy] do
+    confirm_ownership(@post, "Only the creators of a post may modify it.")
+  end
 
   def index
     @posts = Post.find_posts_with_counts(current_user.id)
@@ -60,13 +63,6 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
-  end
-
-  def confirm_ownership
-    unless @post.user == current_user
-      flash[:alert] = "Only the creators of a post may modify it."
-      redirect_to root_path
-    end
   end
 
   def confirm_friendship
