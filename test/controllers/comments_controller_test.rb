@@ -10,7 +10,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new post comment" do
-    get new_post_comment_path(@post)
+    get new_post_comment_path(post_id: @post.id, parent_post_id: @post.id)
     assert_response :success
   end
 
