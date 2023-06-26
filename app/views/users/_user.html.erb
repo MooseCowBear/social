@@ -7,7 +7,13 @@
       </div>
     <% end %>
     <div class="user-card__info">
-      <p><%=display_name(user) %></p>
+      <p>
+        <% if request %>
+          <%= display_name(user) %>
+        <% else %>
+          <%= link_to display_name(user), user_path(user) %>
+        <% end %>
+      </p> 
       <small>
         <%= user.profile.location if user.profile && user.profile.location %>
       </small>
