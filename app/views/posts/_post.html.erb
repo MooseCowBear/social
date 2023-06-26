@@ -7,12 +7,14 @@
             <%= link_to post.title, post_path(post), 
               data: { turbo_frame: "_top" }%>
           </h2>
-          <%= display_date(post.created_at) %>
+          <%= display_date(post.created_at, curr) %>
         </div>
         <div class="header line">
           <p><%= display_name(post.user) %></p>
 
-          <% if post.user == current_user %>
+          <%# if post.user == current_user %>
+
+          <% if post.user == curr %>
             <div class="owner_actions">
               <%= link_to "Edit", edit_post_path(post) %> |
               <% if show %>
@@ -34,7 +36,7 @@
 
     <% if post.image.attached? %>
       <div class="post_image">
-        <%= image_tag post.resized_image%>
+        <%= image_tag post.resized_image %>
       </div>
     <% end %>
 
@@ -47,7 +49,7 @@
     <div class="counts__wrapper">
       <div>
         <%= turbo_frame_tag "#{post.id}_likes" do %>
-          <% render partial: "likes/like", locals: { post: post } %>
+          <% render partial: "likes/like", locals: { post: post, curr: curr } %>
         <% end %>
       </div>
 

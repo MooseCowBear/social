@@ -22,12 +22,13 @@ class Comment < ApplicationRecord
     #and if that comment is a reply to another comment, notify
     #that comment's author too. 
     res = []
-    post_author_id = Post.find_by(id: parent_post_id).user.id
-    res << post_author_id unless post_author_id == user_id
+    post_author = Post.find_by(id: parent_post_id).user
+
+    res << post_author unless post_author.id == user_id
 
     if commentable_type == "Comment"
-      comment_id = Comment.find_by(id: commentable_id).user.id
-      res << comment_id unless comment_id == user_id
+      comment_user = Comment.find_by(id: commentable_id).user
+      res << comment_user unless comment_user.id == user_id
     end
     res.uniq
   end 

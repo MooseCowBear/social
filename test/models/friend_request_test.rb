@@ -64,6 +64,6 @@ class FriendRequestTest < ActiveSupport::TestCase
     friend = users(:charlie)
     request = FriendRequest.send_request(@user, friend)
     assert_equal request.recipients.length, 1
-    assert request.recipients.include?(friend.id)
+    assert request.recipients.include?(friend)
   end
 end

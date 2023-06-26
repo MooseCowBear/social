@@ -1,7 +1,7 @@
 <div class="page__wrapper">
   <h1>View Post</h1>
 
-  <%= render @post, show: true %>
+  <%= render @post, show: true, curr: current_user %>
 
   <div class="comments header">
     <h2>Comments</h2>

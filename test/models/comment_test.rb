@@ -52,7 +52,7 @@ class CommentTest < ActiveSupport::TestCase
     comment.body = "something"
     comment.save!
 
-    assert comment.recipients.include?(users(:bob).id)
+    assert comment.recipients.include?(users(:bob))
   end
 
   test "except when that user is repying to own comment" do
@@ -63,7 +63,7 @@ class CommentTest < ActiveSupport::TestCase
     comment.body = "something"
     comment.save!
 
-    assert_not comment.recipients.include?(users(:bob).id)
+    assert_not comment.recipients.include?(users(:bob))
   end
 
   test "post author is in notification recipient list when someone comments on their post" do
@@ -74,7 +74,7 @@ class CommentTest < ActiveSupport::TestCase
     comment.body = "something"
     comment.save!
 
-    assert comment.recipients.include?(users(:alice).id)
+    assert comment.recipients.include?(users(:alice))
   end
 
   test "except when author is also commenter" do
@@ -85,7 +85,7 @@ class CommentTest < ActiveSupport::TestCase
     comment.body = "something"
     comment.save!
 
-    assert_not comment.recipients.include?(users(:alice).id)
+    assert_not comment.recipients.include?(users(:alice))
   end
 
   test "returns correct ancestor post" do

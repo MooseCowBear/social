@@ -18,6 +18,32 @@ class Post < ApplicationRecord
 
   default_scope { order(created_at: :desc) } 
 
+  #trying to broadcast in realtime a friend's posts 
+  after_create_commit do 
+    self.recipients&.each do |r| 
+      broadcast_prepend_to "broadcast_to_user_#{r.id}", 
+      target: :posts,
+      partial: "posts/post",
+      locals: { post: self, curr: r } 
+    end
+  end
+
+  after_update_commit do 
+    self.recipients&.each do |r|
+      broadcast_replace_to "broadcast_to_user_#{r.id}",
+      target: self,
+      partial: "posts/post",
+      locals: { post: self, curr: r } 
+    end
+  end
+
+  after_destroy_commit do 
+    self.recipients&.each do |r|
+      broadcast_remove_to "broadcast_to_user_#{r.id}",
+      target: self
+    end
+  end
+
   def self.find_posts_with_counts(user_ids) 
     Post.where(user_id: user_ids).
       includes({ user: [:profile] }).
@@ -33,7 +59,7 @@ class Post < ApplicationRecord
   end
 
   def recipients
-    user.friends.ids
+    user.friends
   end
 
   private

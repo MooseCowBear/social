@@ -46,7 +46,7 @@ class LikeTest < ActiveSupport::TestCase
     like.save
 
     assert_equal like.recipients.length, 1
-    assert like.recipients.include?(users(:alice).id)
+    assert like.recipients.include?(users(:alice))
   end
 
   test "except when someone likes their own post. then no notification recipients" do

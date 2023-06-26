@@ -10,7 +10,7 @@ class Like < ApplicationRecord
 
   def recipients
     res = [] 
-    res << post.user_id unless user_id == post.user_id
+    res << post.user unless user_id == post.user_id
     res
   end
 end

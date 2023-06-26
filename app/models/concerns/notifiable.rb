@@ -8,7 +8,7 @@ module Notifiable
   def send_notifications
     if self.respond_to?(:recipients)
       self.recipients&.each do |r|
-        Notification.create(user_id: r, item: self)
+        Notification.create(user_id: r.id, item: self)
       end
     end
   end

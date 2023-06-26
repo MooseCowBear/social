@@ -1,3 +1,4 @@
-<%= turbo_stream.prepend "posts", partial: "posts/post", locals: { post: @post, show: false } %>
+<%= turbo_stream.prepend "posts", partial: "posts/post", locals: { post: @post, show: false, curr: current_user } %>
+<%= turbo_stream.prepend "user_posts", partial: "posts/post", locals: { post: @post, show: false, curr: current_user } %>
 <%= turbo_stream.update Post.new, "" %>
 <%= turbo_stream.update "flash", partial: "layouts/flash" %>

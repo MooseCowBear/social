@@ -1,5 +1,8 @@
 <div class="count_container">
-  <% like = current_user.post_like(post.id) %> 
+  <%# like = current_user.post_like(post.id) %> 
+
+  <% like = curr.post_like(post.id) %> 
+
   <% if like %>
     <%= button_to post_like_path(post_id: post.id, id: like.id), 
         method: :delete, 
