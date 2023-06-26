@@ -19,6 +19,7 @@ It is a social media web app inspired by Facebook.
 - Posts
   - A user can create posts consisting of text, an image, or both
   - New and edit forms for posts appear embedded with turbostreams
+  - A user's "feed" of posts is broadcasted. 
 
 - Comments
   - A user may comment on a post
