@@ -1,6 +1,6 @@
 module UsersHelper
   def display_name(user)
-    if user.profile
+    if user.profile && !user.profile.username.blank?
       user.profile.username
     else
       user.email.split("@").first.capitalize
