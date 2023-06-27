@@ -21,9 +21,13 @@
     <%= f.text_area :body %>
   </div>
 
-  <div class="form-field">
+  <div class="form-field attached_image">
     <%= f.label :image %>
     <%= f.file_field :image %> 
+    <% if @post.image.attached? %>
+      <p>Image is currently:</p>
+      <%= image_tag post.image.variant(resize_to_limit: [50, 50]) %>
+    <% end %>
   </div>
  
   <%= f.submit %>

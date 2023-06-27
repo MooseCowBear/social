@@ -50,7 +50,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id]) #complains about not having includes but also includes gives an error
+    @post = Post.find(params[:id])
     @post.destroy
 
     respond_to do |format|

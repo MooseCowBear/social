@@ -54,12 +54,8 @@ class Post < ApplicationRecord
       group("posts.id")
   end
 
-  def resized_image
-    image.variant(resize_to_limit: [300, 300]).processed
-  end
-
   def recipients
-    user.friends
+    user.friends.includes(:profile, :likes)
   end
 
   private

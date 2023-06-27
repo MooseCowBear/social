@@ -66,6 +66,7 @@ class PostTest < ActiveSupport::TestCase
     new_post.image = fixture_file_upload("branch.jpeg", "image/jpeg")
 
     assert new_post.valid?
+    assert new_post.save
   end 
 
   test "user friends are in notifications recipients list when new post is created" do

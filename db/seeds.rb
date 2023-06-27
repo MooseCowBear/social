@@ -98,7 +98,7 @@ post3.save!
 
 post4 = Post.new(user_id: alice.id, title: "Proudest Moment Ever")
 post4.created_at = now - 1
-post4.image.attach(io: File.open('app/assets/images/branch.jpeg'), filename: 'branch.jpg', content_type: 'image/jpeg')
+post4.image.attach(io: File.open('app/assets/images/branch.jpeg'), filename: 'branch.jpeg', content_type: 'image/jpeg')
 post4.save!
 
 #want comments for posts, and likes
