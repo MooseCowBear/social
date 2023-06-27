@@ -26,7 +26,13 @@
     <%= f.file_field :image %> 
     <% if @post.image.attached? %>
       <p>Image is currently:</p>
-      <%= image_tag @post.image.variant(resize_to_limit: [50, 50]) %>
+      <div>
+        <%= image_tag @post.image.variant(resize_to_limit: [50, 50]) %>
+        <% unless @post.body.blank? %>
+          <%= f.check_box :remove_image %> 
+          <%= f.label :remove_image, "Remove Image" %>
+        <% end %>
+      </div>
     <% end %>
   </div>
  

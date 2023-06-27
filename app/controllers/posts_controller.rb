@@ -39,7 +39,15 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
-    if @post.update(post_params)
+    updated_params = modify_params_for_image_removal(post_params)
+    puts "updated PARAMS ARE:"
+    pp updated_params
+
+    #now testing if can actually remove image by setting to nil
+    # PROBLEM, @post now has no image. so form rejects without body AND doesn't show image thumbnail anymore
+    # one, not great option: to only add remove checkbox in form if there is a body. 
+    # not ideal, but would allow user's to remove an image from a post that had a body too.
+    if @post.update(updated_params.except(:remove_image))
       respond_to do |format|
         format.html { redirect_to @post, notice: "Post was successfully updated." }
         format.turbo_stream { flash.now[:notice] = "Post was successfully updated." } 
@@ -73,6 +81,14 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:user_id, :title, :body, :image)
+    params.require(:post).permit(:user_id, :title, :body, :image, :remove_image)
+  end
+
+  #move to concern, to be shared with profile
+  def modify_params_for_image_removal(strong_params)
+    if strong_params[:remove_image] == "1" && !strong_params[:image]
+      return strong_params.merge(:image => nil)
+    end
+    strong_params
   end
 end
