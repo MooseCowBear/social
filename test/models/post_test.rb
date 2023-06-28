@@ -57,13 +57,10 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "post is valid if title and image" do
-    #the callback to broadcast was causing a problem
-    #couldn't find the file, so testing validity instead of save
-
     new_post = Post.new
     new_post.title = "title"
     new_post.user = users(:alice)
-    new_post.image = fixture_file_upload("branch.jpeg", "image/jpeg")
+    new_post.image.attach(io: File.open('test/fixtures/files/branch.jpeg'), filename: 'branch.jpeg')
 
     assert new_post.valid?
     assert new_post.save
