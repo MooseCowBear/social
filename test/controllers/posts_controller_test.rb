@@ -84,4 +84,27 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       delete post_path(3)
     end
   end
+
+  test "should allow user to delete image from post if there is a body" do
+    #giving the post an image to delete...
+    #tried to add with active_storage/blob and attachment
+    #but even though it created the attachment, calling Post.find(1).image.attached? 
+    #returned false
+    Post.find(1).image.attach(io: File.open('test/fixtures/files/branch.jpeg'), filename: 'branch.jpeg')
+
+    patch post_path(1), params: { post: { remove_image: "1" } }
+    
+    assert_response :redirect
+    follow_redirect!
+    assert_not Post.find(1).image.attached?
+  end
+
+  test "should not allow user to delete image if there is no body" do
+    Post.find(1).image.attach(io: File.open('test/fixtures/files/branch.jpeg'), filename: 'branch.jpeg')
+
+    patch post_path(1), params: { post: { body: "", remove_image: "1" } }
+
+    assert_match "Post must have content.", @response.body
+    assert Post.find(1).image.attached?
+  end
 end

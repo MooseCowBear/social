@@ -1,0 +1,13 @@
+#when checking profile.image.attached? and post.image.attached?,
+#both were false so couldn't test if they were removed.
+#ended up attaching images in the tests 
+
+#first_profile_image_attachment:
+  #name: image
+  #record: alice_profile (Profile)
+ # blob: profile_image_blob
+
+#first_post_image_attachment:
+  #name: image
+  #record: Post.find(1) (Post)
+  #blob: post_image_blob_one

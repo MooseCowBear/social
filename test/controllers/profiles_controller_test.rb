@@ -60,4 +60,19 @@ class ProfilesControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_equal "Only profile owners may edit profiles.", flash[:alert]
   end
+
+  test "should allow user to delete profile image" do
+    profiles(:alice_profile).image.attach(io: File.open('test/fixtures/files/branch.jpeg'), filename: 'branch.jpeg')
+
+    patch profile_path(id: profiles(:alice_profile)), 
+      params: { profile: { location: "New York", remove_image: "1" } }
+    assert_response :redirect
+    follow_redirect!
+
+    #when trying to check profiles(:alice_profile) for attached image, no
+    #changes are shown. but referring to the profile through alice as below
+    #shows the update
+
+    assert_not users(:alice).profile.image.attached?
+  end
 end
