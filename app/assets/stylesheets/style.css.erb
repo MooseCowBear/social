@@ -60,9 +60,10 @@ a:not([class]) {
 
 
 :root {
+  color-scheme: light dark;
   --background-body: rgb(18, 18, 18);
   --background-card: rgb(41, 41, 41);
-  --text: rgba(255, 255, 255, 0.95);
+  --text: rgba(255, 255, 255, 0.8);
   --text-secondary: rgba(179, 179, 179, 0.9);
   --radius: 10px;
   --gradient-one: rgb(65, 88, 208);
@@ -112,6 +113,10 @@ header {
   align-items: center;
   background-color: var(--background-body);
   padding: 1rem clamp(10px, 5vw, 2rem);
+}
+
+img {
+  filter: brightness(0.8) contrast(1.2);
 }
 
 .heart.color svg, .bubble.color svg {
@@ -856,6 +861,10 @@ select:focus + .focus {
     --background-card: rgb(245, 245, 245);
     --text: rgba(68, 68, 68, 0.9);
     --text-secondary: rgba(140, 140, 140);
+  }
+
+  img {
+    filter: brightness(1) contrast(1);
   }
 
   input[type="submit"]:hover, 

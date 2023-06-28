@@ -9,11 +9,11 @@ class Profile < ApplicationRecord
 
   #for "friend requests, posts, etc."
   def avatar_as_thumnail
-    image.variant(resize_to_limit: [50, 50]).processed
+    image.variant(resize_to_limit: [50, 50])
   end 
 
   #for profile show page
   def small_avatar
-    image.variant(resize_to_limit: [150, 150]).processed
+    image.variant(resize_to_limit: [150, 150])
   end
 end

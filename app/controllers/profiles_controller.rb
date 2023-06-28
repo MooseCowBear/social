@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  include RemoveImage
+  
   before_action :set_profile, except: [:create, :new]
 
   before_action only: [:edit, :update, :destroy] do
@@ -28,7 +30,9 @@ class ProfilesController < ApplicationController
   end
 
   def update 
-    if @profile.update(profile_params)
+    updated_params = modify_params_for_image_removal(profile_params)
+
+    if @profile.update(updated_params.except(:remove_image))
       flash[:notice] = "Profile has been updated."
       redirect_to user_profile_path(@profile.user, @profile)
     else
@@ -46,7 +50,7 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).
-      permit(:username, :location, :birthday, :time_zone, :user_id, :image, :interests)
+      permit(:username, :location, :birthday, :time_zone, :user_id, :image, :interests, :remove_image)
   end
 
   def set_profile 
