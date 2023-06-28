@@ -1,7 +1,4 @@
 class CommentsController < ApplicationController
-  include ActionView::RecordIdentifier
-  include CommentsHelper
-
   before_action :set_commentable
   before_action :set_comment, only: [:edit, :update, :destroy]
 

@@ -14,9 +14,6 @@
     <ul class="comments_list--outer">
       <%= turbo_frame_tag "comments" do %>
         <%= render @comments %>
-        <% unless @comments.any? %>
-          <p>There are no comments yet.</p>
-        <% end %>
       <% end %>
     </ul>
 </div>
