@@ -16,7 +16,7 @@
       <%= link_to "so social", root_path, class: "logo" %>
       <% if user_signed_in? %>
         <div data-controller="toggle" data-toggle-change-class="hidden">
-          <button data-action="click->toggle#remove" class="clickable">
+          <button data-action="click->toggle#remove" class="clickable menu_button">
             <%= render partial: "shared/hamburger" %>
           </button>
           <div data-toggle-target="content" class="menu__wrapper hidden" id="menu">

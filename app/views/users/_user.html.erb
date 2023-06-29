@@ -1,7 +1,10 @@
 <div class="card">
   <div class="user_card__content">
-    <%= image_tag user.profile.avatar_as_thumnail if user.profile && user.profile.image.attached? %>
-    <% unless user.profile && user.profile.image.attached? %>
+    <%#= image_tag user.profile.avatar_as_thumnail if user.profile && user.profile.image.attached? %>
+
+    <% if user.profile && user.profile.image.attached? %>
+      <%= cl_image_tag(user.profile.image.key, width: 50, height: 50, crop: :fit) %>
+    <% else %>
       <div class="no_avatar">
         <p class="initial"><%= initial(user) %></p>
       </div>

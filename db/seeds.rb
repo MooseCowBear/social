@@ -1,6 +1,10 @@
 User.destroy_all
 FriendRequest.destroy_all
 Profile.destroy_all
+Post.destroy_all
+Comment.destroy_all
+Like.destroy_all
+Notification.destroy_all
 
 names = ["alice", "harry", "martin", "malek", "gloria", 
   "steve", "horace", "emily", "emma", "evelyn", "carry",
@@ -31,6 +35,10 @@ end
 alice = User.find_by(email: "alice@fake.com")
 
 profile = Profile.new(user_id: alice.id, username: "AliceInWonderLand", location: "Through the Looking Glass", interests: "books, cats, large mushrooms, growing, shrinking", birthday: 20.years.ago)
+
+#profile_pic = URI.open("https://res.cloudinary.com/dcctqkaoe/image/upload/v1688056222/profile_ebgfpl.jpg")
+#profile.image.attach(io: profile_pic, filename: 'emma_profile.jpeg')
+
 profile.image.attach(io: File.open('app/assets/images/emma_profile.jpeg'), filename: 'emma_profile.jpeg', content_type: 'image/jpeg')
 profile.save!
 
@@ -93,11 +101,19 @@ post2.save!
 
 post3 = Post.new(user_id: alice.id, title: "Ready to go", body: content[0..400])
 post3.created_at = now - 2
+
+#leaf = URI.open("https://res.cloudinary.com/dcctqkaoe/image/upload/v1688056245/leaf_gcaqh2.jpg")
+#post3.image.attach(io: leaf, filename: 'leaf.jpeg')
+
 post3.image.attach(io: File.open('app/assets/images/leaf.jpeg'), filename: 'leaf.jpeg', content_type: 'image/jpeg')
 post3.save!
 
 post4 = Post.new(user_id: alice.id, title: "Proudest Moment Ever")
 post4.created_at = now - 1
+
+#branch = URI.open("https://res.cloudinary.com/dcctqkaoe/image/upload/v1688056101/branch_ylwuj5.jpg")
+#post4.image.attach(io: branch, filename: 'branch.jpeg')
+
 post4.image.attach(io: File.open('app/assets/images/branch.jpeg'), filename: 'branch.jpeg', content_type: 'image/jpeg')
 post4.save!
 

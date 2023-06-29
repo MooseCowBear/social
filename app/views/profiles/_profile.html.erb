@@ -1,7 +1,9 @@
 <div class="card profile">
   <div class="image_div">
     <% if profile.image.attached? %>
-        <%= image_tag profile.small_avatar %>
+        <%#= image_tag profile.small_avatar %>
+
+        <%= cl_image_tag(profile.image.key, width: 150, height: 150, crop: :fit) %>
     <% else %>
       <div class="no_avatar profile">
         <p class="initial"><%= initial(profile.user) %></p>
