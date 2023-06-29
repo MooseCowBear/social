@@ -62,7 +62,7 @@ class Post < ApplicationRecord
 
   def has_content
     unless !self.body.blank? || self.image.attached?
-      errors.add(:post, "must have content.")
+      errors.add(:post, "must have content (either an image or a body).")
     end
   end
 end

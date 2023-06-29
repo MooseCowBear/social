@@ -104,7 +104,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
     patch post_path(1), params: { post: { body: "", remove_image: "1" } }
 
-    assert_match "Post must have content.", @response.body
+    assert_match "Post must have content", @response.body
     assert Post.find(1).image.attached?
   end
 end
