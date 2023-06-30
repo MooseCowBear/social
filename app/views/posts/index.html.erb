@@ -8,6 +8,10 @@
     <%= turbo_frame_tag Post.new %>
     <%= turbo_frame_tag "user_posts" do %>
       <%= render @posts, show: false, curr: current_user %>
-      <%= "There are no posts yet." unless @posts.any? %>
+      <% unless @posts.any? %>
+        <div class="no_posts" id="no_posts">
+          <%= "There are no posts yet." %>
+        </div>
+      <% end %>
     <% end %>
   </div>
