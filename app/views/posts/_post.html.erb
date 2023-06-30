@@ -11,9 +11,6 @@
         </div>
         <div class="header line">
           <p><%= display_name(post.user) %></p>
-
-          <%# if post.user == current_user %>
-
           <% if post.user == curr %>
             <div class="owner_actions">
               <%= link_to "Edit", edit_post_path(post) %> |
@@ -36,8 +33,6 @@
 
     <% if post.image.attached? %>
       <div class="post_image">
-        <%#= image_tag post.image.variant(resize_to_limit: [300, 300]) %>
-
         <%= cl_image_tag(post.image.key, width: 300, height: 300, crop: :fit) %>
       </div>
     <% end %>

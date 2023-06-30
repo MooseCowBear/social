@@ -41,8 +41,6 @@
     <% if @profile.image.attached? %>
       <p>Image is currently:</p>
       <div>
-        <%#= image_tag @profile.avatar_as_thumnail %>
-
         <%= cl_image_tag(@profile.image.key, width: 50, height: 50, crop: :fit) %>
         <%= f.check_box :remove_image %> 
         <%= f.label :remove_image, "Remove Image" %>
