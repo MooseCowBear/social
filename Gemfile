@@ -79,3 +79,4 @@ gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem 'bullet', group: 'development'
 
 gem 'cloudinary'
+gem "dockerfile-rails", ">= 1.5", :group => :development
