@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :demo_sessions, only: [:create]
   root "home#index"
 
   devise_for :users, controllers: {

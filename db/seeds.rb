@@ -20,7 +20,7 @@ names = ["alice", "harry", "martin", "malek", "gloria",
 emails = names.map { |name| name + "@fake.com" }
 
 emails.each do |e|
-  user = User.create!(email: e, password: "123456")
+  user = User.create!(email: e, password: (0...25).map { [*('a'..'z'), *('0'..'9') ].to_a[rand(36)] }.join)
 end
 
 requests = []
