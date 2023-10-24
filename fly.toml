@@ -1,11 +1,13 @@
-# fly.toml app configuration file generated for still-meadow-9180 on 2023-06-30T11:58:51-04:00
+# fly.toml app configuration file generated for so-social on 2023-10-24T15:12:51-04:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "still-meadow-9180"
+app = "so-social"
 primary_region = "ewr"
 console_command = "/rails/bin/rails console"
+
+[build]
 
 [http_service]
   internal_port = 3000
@@ -13,6 +15,7 @@ console_command = "/rails/bin/rails console"
   auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 0
+  processes = ["app"]
 
 [[statics]]
   guest_path = "/rails/public"

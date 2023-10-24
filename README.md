@@ -4,7 +4,7 @@ This is an implementation of the [final project](https://www.theodinproject.com/
 
 It is a social media web app inspired by Facebook. 
 
-See the live hosted on [Fly.io](https://still-meadow-9180.fly.dev/).
+See the live hosted on [Fly.io](https://so-social.fly.dev/).
 
 ## Features
 
