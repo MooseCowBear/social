@@ -1,11 +1,3 @@
-User.destroy_all
-FriendRequest.destroy_all
-Profile.destroy_all
-Post.destroy_all
-Comment.destroy_all
-Like.destroy_all
-Notification.destroy_all
-
 names = ["alice", "harry", "martin", "malek", "gloria", 
   "steve", "horace", "emily", "emma", "evelyn", "carry",
   "ryan", "avery", "melissa", "john", "michael", "winston",
